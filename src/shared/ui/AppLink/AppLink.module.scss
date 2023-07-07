@@ -1,0 +1,16 @@
+.app-link {
+  text-decoration: none;
+  transition: color ease-in-out .2s;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.primary {
+  color: var(--color);
+}
+
+.secondary {
+  color: red;
+}
