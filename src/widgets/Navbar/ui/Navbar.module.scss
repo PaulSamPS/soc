@@ -1,17 +1,17 @@
 .navbar {
-    width: 100%;
-    height: var(--navbar-height);
-    background: var(--bg-color-secondary);
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid var(--border-color);
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: var(--navbar-height);
+	padding: 20px;
+	background: var(--bg-color-secondary);
+	border-bottom: 1px solid var(--border-color);
 
-    .links {
-        margin-left: auto;
+	.links {
+		margin-left: auto;
 
-        .main-link {
-            margin-right: 15px;
-        }
-    }
+		.main-link {
+			margin-right: 15px;
+		}
+	}
 }

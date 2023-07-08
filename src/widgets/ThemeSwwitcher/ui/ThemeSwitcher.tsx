@@ -7,13 +7,19 @@ import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import styles from './ThemeSwitcher.module.scss';
 
 interface ThemeSwitcherProps {
-    className?: string
+    className?: string;
 }
 
 export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <Button theme={ThemeButton.CLEAR} className={clsx(styles['theme-switcher'], className)} onClick={toggleTheme}>{theme === Theme.LIGHT ? <LightIcon /> : <DarkIcon />}</Button>
+        <Button
+            theme={ThemeButton.CLEAR}
+            className={clsx(styles['theme-switcher'], className)}
+            onClick={toggleTheme}
+        >
+            {theme === Theme.LIGHT ? <LightIcon /> : <DarkIcon />}
+        </Button>
     );
 };
