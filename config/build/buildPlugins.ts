@@ -1,7 +1,7 @@
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { type BuildOptions } from './types/config';
+import { BuildOptions } from './types/config';
 
 export const buildPlugins = ({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] => [
     new HTMLWebpackPlugin({
@@ -13,7 +13,7 @@ export const buildPlugins = ({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         chunkFilename: 'css/[name].[contenthash:8].css',
     }),
     new webpack.DefinePlugin({
-        __is_DEV_: JSON.stringify(isDev),
+        __IS_DEV__: JSON.stringify(isDev),
     }),
     new webpack.HotModuleReplacementPlugin(),
 ];
