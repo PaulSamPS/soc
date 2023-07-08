@@ -1,0 +1,11 @@
+.theme-switcher {
+  color: var(--color);
+
+  svg {
+    transition: color ease-in-out .2s;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}

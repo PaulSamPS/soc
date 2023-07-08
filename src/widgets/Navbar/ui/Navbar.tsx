@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Navbar.module.scss';
 import clsx from "clsx";
 import {AppLink, AppLinkTheme} from "shared/ui/AppLink/AppLink";
+import {ThemeSwitcher} from "widgets/ThemeSwwitcher";
 
 interface NavbarProps {
     className?: string
@@ -10,6 +11,7 @@ interface NavbarProps {
 export const Navbar = ({className}: NavbarProps) => {
     return (
         <div className={clsx(styles.navbar, className)}>
+            <ThemeSwitcher/>
             <div className={styles.links}>
                 <AppLink to={'/'} theme={AppLinkTheme.PRIMARY} className={styles['main-link']}>Главная</AppLink>
                 <AppLink to={'/about'} theme={AppLinkTheme.PRIMARY}>О нас</AppLink>
