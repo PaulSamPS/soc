@@ -1,28 +1,27 @@
+import clsx from 'clsx';
+import React, { useState } from 'react';
+import { ThemeSwitcher } from 'widgets/ThemeSwwitcher';
+import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
 import styles from './Sidebar.module.scss';
-import clsx from "clsx";
-import React, {useState} from "react";
-import {ThemeSwitcher} from "widgets/ThemeSwwitcher";
-import {LanguageSwitcher} from "widgets/LanguageSwitcher";
 
 interface SidebarProps {
     className?: string
 }
 
-export const Sidebar = ({className}: SidebarProps) => {
-    const [collapsed, setCollapsed] = useState(false)
+export const Sidebar = ({ className }: SidebarProps) => {
+    const [collapsed, setCollapsed] = useState(false);
 
     const onToggle = () => {
-        setCollapsed(!collapsed)
-    }
+        setCollapsed(!collapsed);
+    };
 
     return (
         <div className={clsx(styles.sidebar, collapsed && styles.collapsed, className)}>
-            <button onClick={onToggle}>toggle</button>
+            <button type='button' onClick={onToggle}>toggle</button>
             <div className={styles.switchers}>
-                <ThemeSwitcher/>
-                <LanguageSwitcher className={styles.language}/>
+                <ThemeSwitcher />
+                <LanguageSwitcher className={styles.language} />
             </div>
         </div>
     );
 };
-
