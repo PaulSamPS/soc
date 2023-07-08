@@ -16,6 +16,14 @@
   background: var(--border-color);
   height: 1px;
   width: 100%;
-  opacity: var(--divider-opacity);
+}
+
+.content {
+  display: flex;
+}
+
+.wrapper {
+  flex-grow: 1;
+  padding: 20px;
 }
 
