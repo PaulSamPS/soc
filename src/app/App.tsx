@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import './styles/index.scss';
 import {useTheme} from "app/providers/ThemeProvider";
 import clsx from 'clsx'
@@ -11,12 +11,14 @@ export const App = () => {
 
     return (
         <div className={clsx('app', theme)}>
-            <Navbar/>
-            <div className='divider'/>
-            <div className='content'>
-                <Sidebar/>
-                <AppRouter/>
-            </div>
+            <Suspense fallback=''>
+                <Navbar/>
+                <div className='divider'/>
+                <div className='content'>
+                    <Sidebar/>
+                    <AppRouter/>
+                </div>
+            </Suspense>
         </div>
     );
 };
