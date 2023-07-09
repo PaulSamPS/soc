@@ -25,7 +25,7 @@
   ],
   "plugins": ["stylelint-order", "stylelint-scss"],
   "rules": {
-    "prettier/prettier": "off",
+    "prettier/prettier": null,
     "color-hex-case": "upper"
   }
 }
