@@ -42,6 +42,7 @@ module.exports = {
         'object-curly-newline': 'off',
         'operator-linebreak': 'off',
         'implicit-arrow-linebreak': 'off',
+        'comma-dangle': 'off',
     },
     globals: {
         __IS_DEV__: true,
