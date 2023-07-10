@@ -9,7 +9,7 @@ export enum ThemeButton {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
-    theme: ThemeButton;
+    theme?: ThemeButton;
 }
 
 export const Button: FC<ButtonProps & PropsWithChildren> = ({
@@ -18,7 +18,11 @@ export const Button: FC<ButtonProps & PropsWithChildren> = ({
     theme,
     ...otherProps
 }) => (
-    <button type='button' className={clsx(styles.button, styles[theme], className)} {...otherProps}>
+    <button
+        type='button'
+        className={clsx(styles.button, theme && styles[theme], className)}
+        {...otherProps}
+    >
         {children}
     </button>
 );

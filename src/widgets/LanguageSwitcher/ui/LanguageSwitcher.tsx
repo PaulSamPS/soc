@@ -5,14 +5,14 @@ import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import styles from './LanguageSwitcher.module.scss';
 
 interface LanguageSwitcherProps {
-    className?: string
+    className?: string;
 }
 
 export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
     const { t, i18n } = useTranslation();
 
-    const toggle = () => {
-        i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+    const toggle = async () => {
+        await i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
     };
 
     return (

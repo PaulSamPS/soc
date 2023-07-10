@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
-import { ThemeSwitcher } from 'widgets/ThemeSwwitcher';
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
+import { ThemeSwitcher } from 'widgets/ThemeSwwitcher';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -18,7 +18,10 @@ export const Sidebar = ({ className }: SidebarProps) => {
     };
 
     return (
-        <div className={clsx(styles.sidebar, collapsed && styles.collapsed, className)}>
+        <div
+            data-testid='sidebar'
+            className={clsx(styles.sidebar, collapsed && styles.collapsed, className)}
+        >
             <button type='button' onClick={onToggle}>
                 {t('Открыть')}
             </button>

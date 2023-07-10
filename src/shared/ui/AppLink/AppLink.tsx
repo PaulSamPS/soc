@@ -19,11 +19,7 @@ export const AppLink: FC<AppLinkProps> = ({
     theme = AppLinkTheme.PRIMARY,
     ...otherProps
 }) => (
-    <Link
-        to={to}
-        className={clsx(styles['app-link'], styles[theme], className)}
-        {...otherProps}
-    >
+    <Link to={to} className={clsx(styles['app-link'], styles[theme], className)} {...otherProps}>
         {children}
     </Link>
 );
