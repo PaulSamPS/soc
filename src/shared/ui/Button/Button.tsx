@@ -8,7 +8,6 @@ export enum Appearance {
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    className?: string;
     appearance: Appearance;
 }
 

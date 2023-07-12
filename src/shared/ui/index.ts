@@ -1,3 +1,3 @@
 export { Spinner } from './Spinner/Spinner';
 export { AppLink, AppLinkTheme } from './AppLink/AppLink';
-export { Button, ThemeButton } from './Button/Button';
+export { Button, Appearance } from './Button/Button';

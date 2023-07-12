@@ -34,5 +34,4 @@ export const SecondaryDark: Story = {
         children: 'Test',
     },
 };
-
 SecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];
