@@ -22,7 +22,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
             data-testid='sidebar'
             className={clsx(styles.sidebar, collapsed && styles.collapsed, className)}
         >
-            <button type='button' onClick={onToggle}>
+            <button data-testid='sidebar-toggle' type='button' onClick={onToggle}>
                 {t('Открыть')}
             </button>
             <div className={styles.switchers}>
