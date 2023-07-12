@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { Button, ThemeButton } from 'shared/ui';
+import { Button } from 'shared/ui';
+import { Appearance } from 'shared/ui/Button/Button';
 import styles from './PageError.module.scss';
 
 interface PageErrorProps {
@@ -18,7 +19,7 @@ export const PageError = ({ className }: PageErrorProps) => {
     return (
         <div className={clsx(styles['page-error'], className)}>
             <p>{t('Что-то пошло не так')}</p>
-            <Button theme={ThemeButton.PRIMARY} onClick={reloadPage}>
+            <Button appearance={Appearance.PRIMARY} onClick={reloadPage}>
                 {t('Обновить страницу')}
             </Button>
         </div>

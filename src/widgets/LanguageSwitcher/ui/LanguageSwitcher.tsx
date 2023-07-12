@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Button, Appearance } from 'shared/ui/Button/Button';
 import styles from './LanguageSwitcher.module.scss';
 
 interface LanguageSwitcherProps {
@@ -18,7 +18,7 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
     return (
         <Button
             className={clsx(styles['language-switcher'], className)}
-            theme={ThemeButton.CLEAR}
+            appearance={Appearance.CLEAR}
             onClick={toggle}
         >
             {t('Язык')}

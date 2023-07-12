@@ -2,25 +2,25 @@ import clsx from 'clsx';
 import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
 import styles from './Button.module.scss';
 
-export enum ThemeButton {
+export enum Appearance {
     CLEAR = 'clear',
     PRIMARY = 'primary',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
-    theme?: ThemeButton;
+    appearance: Appearance;
 }
 
 export const Button: FC<ButtonProps & PropsWithChildren> = ({
     className,
     children,
-    theme,
+    appearance,
     ...otherProps
 }) => (
     <button
         type='button'
-        className={clsx(styles.button, theme && styles[theme], className)}
+        className={clsx(styles.button, appearance && styles[appearance], className)}
         {...otherProps}
     >
         {children}
