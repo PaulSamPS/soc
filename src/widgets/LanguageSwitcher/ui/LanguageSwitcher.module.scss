@@ -1,7 +1,9 @@
 .language-switcher {
-	transition: color ease-in-out 0.2s;
+	.lang {
+		transition: color ease-in-out 0.2s;
 
-	&:hover {
-		color: var(--primary);
+		&:hover {
+			color: var(--primary);
+		}
 	}
 }

@@ -1,14 +1,15 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
-import { Button, Appearance } from 'shared/ui/Button/Button';
+import { Button, ButtonAppearance } from 'shared/ui/Button/Button';
 import styles from './LanguageSwitcher.module.scss';
 
 interface LanguageSwitcherProps {
     className?: string;
+    short?: boolean;
 }
 
-export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
+export const LanguageSwitcher = ({ className, short }: LanguageSwitcherProps) => {
     const { t, i18n } = useTranslation();
 
     const toggle = async () => {
@@ -18,10 +19,10 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
     return (
         <Button
             className={clsx(styles['language-switcher'], className)}
-            appearance={Appearance.CLEAR}
+            appearance={ButtonAppearance.CLEAR}
             onClick={toggle}
         >
-            {t('Язык')}
+            <span className={styles.lang}>{t(short ? 'Короткий язык' : 'Язык')}</span>
         </Button>
     );
 };

@@ -1,8 +1,13 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
-import { useTranslation } from 'react-i18next';
 import { ThemeSwitcher } from 'widgets/ThemeSwwitcher';
+import { AppLink, AppLinkTheme, Button, ButtonAppearance } from 'shared/ui';
+import { ButtonSize } from 'shared/ui/Button/Button';
+import { useTranslation } from 'react-i18next';
+import { RouterPath } from 'shared/config/routerConfig/routerConfig';
+import HomeIcon from 'shared/assets/icons/home-icon.svg';
+import AboutIcon from 'shared/assets/icons/about-icon.svg';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -11,7 +16,7 @@ interface SidebarProps {
 
 export const Sidebar = ({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState(false);
-    const { t } = useTranslation();
+    const { t } = useTranslation('navbar');
 
     const onToggle = () => {
         setCollapsed(!collapsed);
@@ -22,12 +27,30 @@ export const Sidebar = ({ className }: SidebarProps) => {
             data-testid='sidebar'
             className={clsx(styles.sidebar, collapsed && styles.collapsed, className)}
         >
-            <button data-testid='sidebar-toggle' type='button' onClick={onToggle}>
-                {t('Открыть')}
-            </button>
+            <Button
+                appearance={ButtonAppearance.BG}
+                size={ButtonSize.L}
+                square
+                className={styles['collapsed-btn']}
+                data-testid='sidebar-toggle'
+                type='button'
+                onClick={onToggle}
+            >
+                {collapsed ? '>' : '<'}
+            </Button>
+            <div className={styles['items-links']}>
+                <AppLink className={styles.item} to={RouterPath.main} theme={AppLinkTheme.PRIMARY}>
+                    <HomeIcon className={styles.icon} />
+                    <span className={styles.link}>{t('Главная')}</span>
+                </AppLink>
+                <AppLink className={styles.item} to={RouterPath.about} theme={AppLinkTheme.PRIMARY}>
+                    <AboutIcon className={styles.icon} />
+                    <span className={styles.link}>{t('О сайте')}</span>
+                </AppLink>
+            </div>
             <div className={styles.switchers}>
                 <ThemeSwitcher />
-                <LanguageSwitcher className={styles.language} />
+                <LanguageSwitcher short={collapsed} className={styles.language} />
             </div>
         </div>
     );

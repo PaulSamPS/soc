@@ -2,26 +2,41 @@ import clsx from 'clsx';
 import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
 import styles from './Button.module.scss';
 
-export enum Appearance {
+export enum ButtonAppearance {
     CLEAR = 'clear',
     PRIMARY = 'primary',
+    BG = 'bg',
+}
+
+export enum ButtonSize {
+    M = 'size-m',
+    L = 'size-l',
+    XL = 'size-xl',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    appearance: Appearance;
+    appearance: ButtonAppearance;
+    square?: boolean;
+    size?: ButtonSize;
 }
 
 export const Button: FC<ButtonProps & PropsWithChildren> = ({
     className,
     children,
     appearance,
+    square,
+    size = ButtonSize.M,
     ...otherProps
-}) => (
-    <button
-        type='button'
-        className={clsx(styles.button, appearance && styles[appearance], className)}
-        {...otherProps}
-    >
-        {children}
-    </button>
-);
+}) => {
+    const classes: Record<string, boolean> = {
+        [styles[appearance]]: true,
+        [styles.square]: square,
+        [styles[size]]: true,
+    };
+
+    return (
+        <button type='button' className={clsx(styles.button, classes, className)} {...otherProps}>
+            {children}
+        </button>
+    );
+};
