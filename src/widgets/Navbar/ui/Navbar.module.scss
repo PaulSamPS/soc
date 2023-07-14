@@ -7,11 +7,12 @@
 	background: var(--bg-color-secondary);
 	border-bottom: 1px solid var(--border-color);
 
-	.links {
+	.link {
 		margin-left: auto;
+		transition: color ease-in-out .2s;
 
-		.main-link {
-			margin-right: 15px;
+		&:hover {
+			color: var(--primary);
 		}
 	}
 }
