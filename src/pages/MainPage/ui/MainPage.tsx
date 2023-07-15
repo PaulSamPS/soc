@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { BugButton } from '@/app/providers/ErrorBoundary';
 import { Counter } from '@/entities/Counter';
+import styles from './MainPage.module.scss';
 
 const MainPage = () => {
     const { t } = useTranslation('main');
 
     return (
-        <div>
+        <div className={styles['main-page']}>
             <BugButton />
             {t('Главная')}
             <Counter />
