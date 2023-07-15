@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
-import { Button, ButtonAppearance } from 'shared/ui/Button/Button';
+import { Button, ButtonAppearance } from '@/shared/ui/Button/Button';
 import styles from './LanguageSwitcher.module.scss';
 
 interface LanguageSwitcherProps {

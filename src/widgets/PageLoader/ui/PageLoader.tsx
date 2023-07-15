@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Spinner } from 'shared/ui';
+import { Spinner } from '@/shared/ui';
 import styles from './PageLoader.module.scss';
 
 interface PageLoaderProps {

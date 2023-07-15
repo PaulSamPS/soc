@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
-import { LanguageSwitcher } from 'widgets/LanguageSwitcher';
-import { ThemeSwitcher } from 'widgets/ThemeSwwitcher';
-import { AppLink, AppLinkTheme, Button, ButtonAppearance } from 'shared/ui';
-import { ButtonSize } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
-import { RouterPath } from 'shared/config/routerConfig/routerConfig';
 import HomeIcon from 'shared/assets/icons/home-icon.svg';
 import AboutIcon from 'shared/assets/icons/about-icon.svg';
+import { AppLink, AppLinkTheme, Button, ButtonAppearance } from '@/shared/ui';
+import { LanguageSwitcher } from '@/widgets/LanguageSwitcher';
+import { ThemeSwitcher } from '@/widgets/ThemeSwwitcher';
+import { ButtonSize } from '@/shared/ui/Button/Button';
+import { RouterPath } from '@/shared/config/routerConfig/routerConfig';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
