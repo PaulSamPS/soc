@@ -7,6 +7,7 @@ const meta: Meta<typeof Sidebar> = {
     title: 'widgets/Sidebar',
     component: Sidebar,
     argTypes: {},
+    parameters: {},
 };
 
 export default meta;

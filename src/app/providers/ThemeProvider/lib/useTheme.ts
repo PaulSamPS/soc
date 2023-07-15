@@ -17,7 +17,7 @@ export const useTheme = (): UseThemeResult => {
     };
 
     useEffect(() => {
-        document.body.setAttribute('data-theme', theme);
+        document.getElementById('app').setAttribute('data-theme', theme);
     }, [theme]);
 
     return <UseThemeResult>{

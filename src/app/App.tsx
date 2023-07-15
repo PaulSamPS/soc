@@ -4,7 +4,7 @@ import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 
 export const App = () => (
-    <div className='app'>
+    <div className='app' id='app'>
         <Suspense fallback=''>
             <Navbar />
             <div className='divider' />

@@ -22,7 +22,7 @@ export const LanguageSwitcher = ({ className, short }: LanguageSwitcherProps) =>
             appearance={ButtonAppearance.CLEAR}
             onClick={toggle}
         >
-            <span className={styles.lang}>{t(short ? 'Короткий язык' : 'Язык')}</span>
+            <span className={styles.lang}>{short ? t('Короткий язык') : t('Язык')}</span>
         </Button>
     );
 };

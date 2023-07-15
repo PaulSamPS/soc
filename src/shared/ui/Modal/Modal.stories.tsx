@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Modal } from '@/shared/ui/Modal/Modal';
+import { Modal } from './Modal';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDeccorator/ThemeDecorator';
 import { Theme } from '@/app/providers/ThemeProvider';
 

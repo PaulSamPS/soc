@@ -1,12 +1,11 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { AllHTMLAttributes } from 'react';
 import { Button } from '@/shared/ui';
 import { ButtonAppearance } from '@/shared/ui/Button/Button';
 import styles from './PageError.module.scss';
 
-interface PageErrorProps {
-    className?: string;
-}
+interface PageErrorProps extends AllHTMLAttributes<HTMLDivElement> {}
 
 export const PageError = ({ className }: PageErrorProps) => {
     const { t } = useTranslation();
