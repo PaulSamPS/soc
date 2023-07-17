@@ -1,0 +1,67 @@
+.send-code {
+  width: 320px;
+  margin: 0 auto;
+  font-family: 'Inter Regular', sans-serif;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-family: 'SF Pro Text Regular', sans-serif;
+}
+
+.phone-input {
+  position: relative;
+  margin-top: 35px;
+
+  input {
+    width: 100%;
+    padding: 10px 16px;
+    color: var(--color);
+    font-size: 16px;
+    font-family: 'SF Pro Text Regular', sans-serif;
+    background-color: var(--bg-color-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    outline: none;
+
+    &::placeholder {
+      color: var(--color-secondary);
+      font-size: 16px;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+  }
+
+  label {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    color: var(--color-secondary);
+    font-size: 12px;
+    font-family: 'Inter Regular', sans-serif;
+  }
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  padding: 14px 40px;
+}
+
+.terms {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all ease-in 0.2s;
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 1;
+  }
+}

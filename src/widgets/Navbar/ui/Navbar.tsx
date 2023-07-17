@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Modal } from '@/shared/ui/Modal/Modal';
 import { Button, ButtonAppearance } from '@/shared/ui';
 import styles from './Navbar.module.scss';
+import { AuthModal } from '@/features/Auth/AuthModal/AuthModal';
 
 interface NavbarProps extends AllHTMLAttributes<HTMLDivElement> {}
 
@@ -26,11 +27,7 @@ export const Navbar = ({ className }: NavbarProps) => {
                 {t('Войти')}
             </Button>
             {createPortal(
-                // eslint-disable-next-line i18next/no-literal-string
-                <Modal isOpen={isAuthModal} onClose={onToggleModal}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A autem ducimus
-                    maiores maxime officiis quia quos voluptatem. Alias, iste, nam?
-                </Modal>,
+                <AuthModal onClose={onToggleModal} isOpen={isAuthModal} />,
                 document.body
             )}
         </div>

@@ -1,0 +1,47 @@
+.title {
+	display: block;
+	margin: 0;
+	color: var(--color);
+	font-weight: 600;
+}
+
+.level-1 {
+	font-size: 40px;
+	line-height: 48px;
+}
+
+.level-2 {
+	font-size: 32px;
+	line-height: 40px;
+}
+
+.level-3 {
+	font-size: 24px;
+	line-height: 32px;
+}
+
+.level-4 {
+	font-size: 20px;
+	line-height: 28px;
+}
+
+.level-5 {
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.w1 {
+	font-weight: 600;
+}
+
+.w2 {
+	font-weight: 500;
+}
+
+.w3 {
+	font-weight: 400;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}

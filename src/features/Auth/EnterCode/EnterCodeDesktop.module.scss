@@ -1,0 +1,72 @@
+.enter-code {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: 'SF Pro Text Regular', sans-serif;
+	text-align: center;
+
+	h2 {
+		margin-bottom: 16px;
+		font-family: Inter, sans-serif;
+	}
+
+	.info {
+		margin-bottom: 20px;
+	}
+
+	.error-message {
+		position: absolute;
+		top: 72px;
+		color: var(--red);
+	}
+
+	.error-code {
+		input {
+			border: 1px solid var(--red);
+		}
+	}
+
+	.code {
+		display: flex;
+		justify-content: space-between;
+		width: 240px;
+		margin-bottom: 16px;
+
+		input {
+			width: 48px;
+			height: 48px;
+			text-align: center;
+		}
+	}
+
+	button {
+		width: 240px;
+		height: 48px;
+		font-size: 16px;
+		background-color: var(--primary);
+	}
+
+	.resend-code {
+		display: flex;
+		flex-direction: column;
+		margin-top: 12px;
+		row-gap: 12px;
+
+		.timer {
+			color: var(--gray-text);
+			cursor: auto;
+		}
+
+		.text {
+			color: var(--gray-text);
+			cursor: pointer;
+			transition: color ease 0.2s;
+
+			&:hover {
+				color: var(--black);
+			}
+		}
+	}
+}

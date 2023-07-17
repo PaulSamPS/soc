@@ -35,7 +35,8 @@ export const Button: FC<ButtonProps & PropsWithChildren> = ({
     };
 
     return (
-        <button type='button' className={clsx(styles.button, classes, className)} {...otherProps}>
+        // eslint-disable-next-line react/button-has-type
+        <button className={clsx(styles.button, classes, className)} {...otherProps}>
             {children}
         </button>
     );
