@@ -12,13 +12,21 @@ import styles from './Modal.module.scss';
 interface ModalProps extends AllHTMLAttributes<HTMLDivElement> {
     isOpen?: boolean;
     onClose?: () => void;
+    lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
 
-export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
+export const Modal = ({ className, children, isOpen, onClose, lazy }: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const timeRef = useRef<ReturnType<typeof setTimeout>>();
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
 
     const closeHandler = useCallback(() => {
         if (onClose) {
@@ -57,6 +65,10 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
         [styles.opened]: isOpen,
         [styles['is-closing']]: isClosing,
     };
+
+    if (lazy && !isMounted) {
+        return null;
+    }
 
     return (
         <div className={clsx(styles.modal, classes, className)}>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './EnterCodeDesktop.module.scss';
 import { Title } from '@/shared/ui/Title/Title';
@@ -9,8 +9,21 @@ import { AuthStepsContext } from '@/features/Auth/context/AuthStepsContext';
 
 const EnterCode = () => {
     const { setStep } = useContext(AuthStepsContext);
-    const [codes] = useState<string[]>(['', '', '', '']);
+    const [code, setCode] = useState<string[]>(['', '', '', '']);
     const { t } = useTranslation('auth');
+
+    const handleInputCode = (event: ChangeEvent<HTMLInputElement>): void => {
+        const index: number = Number(event.target.getAttribute('id'));
+        const { value } = event.target;
+        setCode((prev) => {
+            const newArr = [...prev];
+            newArr[index] = value;
+            return newArr;
+        });
+        if (event.target.nextSibling) {
+            (event.target.nextSibling as HTMLInputElement).focus();
+        }
+    };
 
     return (
         <div className={styles['enter-code']}>
@@ -19,8 +32,16 @@ const EnterCode = () => {
                 {t('Введите последние 4 цифры звонившего номера')}
             </Text>
             <div className={styles.code}>
-                {codes.map((code, index) => (
-                    <input key={index} maxLength={1} placeholder='X' autoComplete='off' />
+                {code.map((c, index) => (
+                    <input
+                        key={index}
+                        maxLength={1}
+                        id={String(index)}
+                        placeholder='X'
+                        autoComplete='off'
+                        onChange={handleInputCode}
+                        value={c}
+                    />
                 ))}
             </div>
             <Button appearance={ButtonAppearance.PRIMARY}>{t('Вход в аккаунт')}</Button>

@@ -48,7 +48,12 @@ export const AuthModal = ({ isOpen, onClose, className }: AuthModalProps) => {
     const Step = stepComponents[step];
 
     return (
-        <Modal className={clsx(styles['auth-modal'], className)} isOpen={isOpen} onClose={onClose}>
+        <Modal
+            className={clsx(styles['auth-modal'], className)}
+            isOpen={isOpen}
+            onClose={onClose}
+            lazy
+        >
             <AuthStepsContext.Provider value={contextValue}>
                 <Suspense fallback={<Spinner />}>
                     <Step />
