@@ -20,7 +20,8 @@
     "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
-    "storybook:build": "storybook build -c ./config/storybook"
+    "storybook:build": "storybook build -c ./config/storybook",
+    "test:screenshots:ci": "npm run storybook:build && npm run test:ui:ci"
   },
   "author": "Pavel Samoylenko <psamoylenko2@gmail.com>",
   "license": "ISC",

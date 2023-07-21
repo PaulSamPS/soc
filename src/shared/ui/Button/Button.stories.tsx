@@ -1,80 +1,31 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDeccorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider';
 import { Button, ButtonAppearance, ButtonSize } from './Button';
+import { Theme } from '@/app/providers/ThemeProvider';
 
 const meta: Meta<typeof Button> = {
     title: 'shared/Button',
     component: Button,
-    argTypes: {
-        appearance: ButtonAppearance,
-    },
+    argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
+export const ThemeLight: Story = {
     args: {
+        children: 'Test',
         appearance: ButtonAppearance.PRIMARY,
-        children: 'Test',
-    },
-};
-
-export const Secondary: Story = {
-    args: {
-        appearance: ButtonAppearance.CLEAR,
-        children: 'Test',
-    },
-};
-
-export const SecondaryDark: Story = {
-    args: {
-        appearance: ButtonAppearance.CLEAR,
-        children: 'Test',
-    },
-};
-SecondaryDark.decorators = [ThemeDecorator(Theme.DARK)];
-
-export const BgLight: Story = {
-    args: {
-        appearance: ButtonAppearance.BG,
-        children: 'Test',
-    },
-};
-BgLight.decorators = [ThemeDecorator(Theme.LIGHT)];
-
-export const BgDark: Story = {
-    args: {
-        appearance: ButtonAppearance.BG,
-        children: 'Test',
-    },
-};
-BgDark.decorators = [ThemeDecorator(Theme.DARK)];
-
-export const Square: Story = {
-    args: {
-        appearance: ButtonAppearance.BG,
-        children: '>',
-        square: true,
         size: ButtonSize.M,
     },
 };
+ThemeLight.decorators = [ThemeDecorator(Theme.LIGHT)];
 
-export const SquareL: Story = {
+export const ThemeDark: Story = {
     args: {
-        appearance: ButtonAppearance.BG,
-        children: '>',
-        square: true,
-        size: ButtonSize.L,
+        children: 'Test',
+        appearance: ButtonAppearance.PRIMARY,
+        size: ButtonSize.M,
     },
 };
-
-export const SquareXl: Story = {
-    args: {
-        appearance: ButtonAppearance.BG,
-        children: '>',
-        square: true,
-        size: ButtonSize.XL,
-    },
-};
+ThemeDark.decorators = [ThemeDecorator(Theme.DARK)];

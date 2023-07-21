@@ -2,13 +2,13 @@ import { PatternFormat } from 'react-number-format';
 import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import styles from './SendCode.module.scss';
-import { Title } from '@/shared/ui/Title/Title';
 import { LevelSize, TitleLevel, WeightSize } from '@/shared/types/common';
-import { Text } from '@/shared/ui/Text/Text';
-import { Button, ButtonAppearance } from '@/shared/ui';
-import { Paragraph } from '@/shared/ui/Paragraph/Paragraph';
-import { useValidateNumber } from '../AuthModal/hooks/useValidateNumber';
-import { AuthStepsContext } from '../context/AuthStepsContext';
+import { useValidateNumber } from './hooks/useValidateNumber';
+import { AuthStepsContext } from '../../lib/AuthStepsContext';
+import { Title } from '@/shared/ui/Title';
+import { Text } from '@/shared/ui/Text';
+import { Button, ButtonAppearance } from '@/shared/ui/Button';
+import { Paragraph } from '@/shared/ui/Paragraph';
 
 const SendCode = () => {
     const { t } = useTranslation('auth');

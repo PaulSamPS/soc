@@ -1,29 +1,18 @@
-import React, { useContext, useState, ChangeEvent } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './EnterCodeDesktop.module.scss';
-import { Title } from '@/shared/ui/Title/Title';
-import { Text } from '@/shared/ui/Text/Text';
 import { LevelSize, TitleLevel } from '@/shared/types/common';
-import { Button, ButtonAppearance } from '@/shared/ui';
-import { AuthStepsContext } from '@/features/Auth/context/AuthStepsContext';
+import { AuthStepsContext } from '../../lib/AuthStepsContext';
+import { useEnterCode } from './hooks/useEnterCode';
+import { Title } from '@/shared/ui/Title';
+import { Text } from '@/shared/ui/Text';
+import { Button, ButtonAppearance } from '@/shared/ui/Button';
+import { useValidateCode } from '@/features/Auth/AuthModal/ui/EnterCode/hooks/useValidateCode';
 
 const EnterCode = () => {
     const { setStep } = useContext(AuthStepsContext);
-    const [code, setCode] = useState<string[]>(['', '', '', '']);
     const { t } = useTranslation('auth');
-
-    const handleInputCode = (event: ChangeEvent<HTMLInputElement>): void => {
-        const index: number = Number(event.target.getAttribute('id'));
-        const { value } = event.target;
-        setCode((prev) => {
-            const newArr = [...prev];
-            newArr[index] = value;
-            return newArr;
-        });
-        if (event.target.nextSibling) {
-            (event.target.nextSibling as HTMLInputElement).focus();
-        }
-    };
+    const { code, handleInputCode } = useEnterCode();
 
     return (
         <div className={styles['enter-code']}>

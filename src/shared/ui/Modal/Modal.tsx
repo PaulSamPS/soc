@@ -8,16 +8,25 @@ import React, {
     useState,
 } from 'react';
 import styles from './Modal.module.scss';
+import { CloseIcon } from '@/shared/assets/icons';
 
 interface ModalProps extends AllHTMLAttributes<HTMLDivElement> {
     isOpen?: boolean;
     onClose?: () => void;
     lazy?: boolean;
+    closeIcon?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
 
-export const Modal = ({ className, children, isOpen, onClose, lazy }: ModalProps) => {
+export const Modal = ({
+    className,
+    children,
+    isOpen,
+    onClose,
+    lazy,
+    closeIcon = false,
+}: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const timeRef = useRef<ReturnType<typeof setTimeout>>();
@@ -75,6 +84,7 @@ export const Modal = ({ className, children, isOpen, onClose, lazy }: ModalProps
             <div className={styles.overlay} onClick={closeHandler}>
                 <div className={styles.content} onClick={onContentClick}>
                     {children}
+                    {closeIcon && <CloseIcon className={styles['close-icon']} onClick={onClose} />}
                 </div>
             </div>
         </div>

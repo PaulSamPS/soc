@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Title } from './Title';
 import { TitleLevel, WeightSize } from '@/shared/types/common';
+import { ThemeDecorator } from '@/shared/config/storybook';
+import { Theme } from '@/app/providers/ThemeProvider';
 
 const meta: Meta<typeof Title> = {
     title: 'shared/Title',
@@ -49,10 +51,22 @@ const meta: Meta<typeof Title> = {
 export default meta;
 type Story = StoryObj<typeof Title>;
 
-export const Light: Story = {
+export const ThemeLight: Story = {
     args: {
         children: 'Text',
         weight: WeightSize.w1,
         level: TitleLevel.h1,
     },
 };
+
+ThemeLight.decorators = [ThemeDecorator(Theme.LIGHT)];
+
+export const ThemeDark: Story = {
+    args: {
+        children: 'Text',
+        weight: WeightSize.w1,
+        level: TitleLevel.h1,
+    },
+};
+
+ThemeDark.decorators = [ThemeDecorator(Theme.DARK)];

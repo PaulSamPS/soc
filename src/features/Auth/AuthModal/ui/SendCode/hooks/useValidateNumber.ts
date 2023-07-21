@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, useCallback, useMemo } from 'react';
 
 type UseValidateNumberReturnType = {
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     isValid: boolean;
     value: string;
 };

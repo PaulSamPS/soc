@@ -2,10 +2,9 @@ import clsx from 'clsx';
 import { createPortal } from 'react-dom';
 import React, { AllHTMLAttributes, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal } from '@/shared/ui/Modal/Modal';
-import { Button, ButtonAppearance } from '@/shared/ui';
+import { Button, ButtonAppearance } from '@/shared/ui/Button';
 import styles from './Navbar.module.scss';
-import { AuthModal } from '@/features/Auth/AuthModal/AuthModal';
+import { AuthModal } from '@/features/Auth';
 
 interface NavbarProps extends AllHTMLAttributes<HTMLDivElement> {}
 

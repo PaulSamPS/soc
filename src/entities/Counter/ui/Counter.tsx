@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, ButtonAppearance } from '@/shared/ui';
+import { Button, ButtonAppearance } from '@/shared/ui/Button';
 import { counterActions } from '../model/slice/counterSlice';
-import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
+import { getCounterValue } from '../model/selectors/getCounterValue';
 
 export const Counter = () => {
     const dispatch = useDispatch();

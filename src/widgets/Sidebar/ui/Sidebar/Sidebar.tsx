@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import HomeIcon from 'shared/assets/icons/home-icon.svg';
 import AboutIcon from 'shared/assets/icons/about-icon.svg';
-import { AppLink, AppLinkTheme, Button, ButtonAppearance } from '@/shared/ui';
 import { LanguageSwitcher } from '@/widgets/LanguageSwitcher';
 import { ThemeSwitcher } from '@/widgets/ThemeSwwitcher';
-import { ButtonSize } from '@/shared/ui/Button/Button';
 import { RouterPath } from '@/shared/config/routerConfig/routerConfig';
 import styles from './Sidebar.module.scss';
+import { Button, ButtonAppearance, ButtonSize } from '@/shared/ui/Button';
+import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 
 interface SidebarProps {
     className?: string;
