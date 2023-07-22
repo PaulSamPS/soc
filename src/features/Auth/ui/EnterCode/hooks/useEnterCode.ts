@@ -1,13 +1,24 @@
-import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
 interface UseEnterCodeResult {
     code: string[];
     handleInputCode: (event: ChangeEvent<HTMLInputElement>) => void;
+    re: RegExp;
+    isNotValidCode: boolean;
 }
 
 export const useEnterCode = (): UseEnterCodeResult => {
     const [code, setCode] = useState<string[]>(['', '', '', '']);
-    const re = useMemo(() => /^[0-9]$/, []);
+    const [isNotValidCode, setIsNotValidCode] = useState(true);
+    const re = useMemo(() => /^[0-9]+$/, []);
+
+    useEffect(() => {
+        if (re.test(code.join('')) && code.join('').length === 4) {
+            setIsNotValidCode(false);
+        } else {
+            setIsNotValidCode(true);
+        }
+    }, [code, re]);
 
     const handleInputCode = useCallback(
         (event: ChangeEvent<HTMLInputElement>): void => {
@@ -19,13 +30,20 @@ export const useEnterCode = (): UseEnterCodeResult => {
                     newArr[index] = value;
                     return newArr;
                 });
+
                 if (event.target.nextSibling) {
                     (event.target.nextSibling as HTMLInputElement).focus();
                 }
+            } else {
+                setCode((prev) => {
+                    const newArr = [...prev];
+                    newArr[index] = value;
+                    return newArr;
+                });
             }
         },
         [re]
     );
 
-    return { code, handleInputCode };
+    return { code, handleInputCode, re, isNotValidCode };
 };

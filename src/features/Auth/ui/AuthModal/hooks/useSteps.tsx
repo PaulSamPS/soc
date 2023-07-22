@@ -1,7 +1,7 @@
 import { ComponentType, useCallback, useMemo, useState } from 'react';
-import { SendCodeLazy } from '@/features/Auth/AuthModal/ui/SendCode/SendCodeLazy';
-import { EnterCodeLazy } from '@/features/Auth/AuthModal/ui/EnterCode/EnterCodeLazy';
-import { IStepContext } from '@/features/Auth/AuthModal/lib/AuthStepsContext';
+import { SendCodeLazy } from '@/features/Auth/ui/SendCode/SendCodeLazy';
+import { EnterCodeLazy } from '@/features/Auth/ui/EnterCode/EnterCodeLazy';
+import { IStepContext } from '@/features/Auth/ui/AuthModal/lib/AuthStepsContext';
 
 type StepComponentType = {
     [key: number]: ComponentType;

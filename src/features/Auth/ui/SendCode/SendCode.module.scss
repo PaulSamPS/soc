@@ -1,5 +1,5 @@
 .send-code {
-  width: 320px;
+  max-width: 320px;
   margin: 0 auto;
   font-family: 'Inter Regular', sans-serif;
   text-align: center;
@@ -33,7 +33,7 @@ h2 {
     }
 
     &:focus {
-      box-shadow: 0 0 0 2px var(--primary);
+      border: 2px solid var(--primary);
     }
   }
 

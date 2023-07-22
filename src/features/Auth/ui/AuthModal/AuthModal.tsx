@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Modal } from '@/shared/ui/Modal/Modal';
-import { AuthStepsContext } from './lib/AuthStepsContext';
+import { AuthStepsContext } from '@/features/Auth/ui/AuthModal/lib/AuthStepsContext';
 import { Spinner } from '@/shared/ui/Spinner';
-import { useSteps } from './hooks/useSteps';
+import { useSteps } from '@/features/Auth/ui/AuthModal/hooks/useSteps';
 
 interface AuthModalProps {
     isOpen: boolean;

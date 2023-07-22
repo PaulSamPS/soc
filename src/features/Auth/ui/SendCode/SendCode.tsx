@@ -1,16 +1,16 @@
 import { PatternFormat } from 'react-number-format';
 import { useTranslation } from 'react-i18next';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import styles from './SendCode.module.scss';
 import { LevelSize, TitleLevel, WeightSize } from '@/shared/types/common';
 import { useValidateNumber } from './hooks/useValidateNumber';
-import { AuthStepsContext } from '../../lib/AuthStepsContext';
+import { AuthStepsContext } from '@/features/Auth/ui/AuthModal/lib/AuthStepsContext';
 import { Title } from '@/shared/ui/Title';
 import { Text } from '@/shared/ui/Text';
 import { Button, ButtonAppearance } from '@/shared/ui/Button';
 import { Paragraph } from '@/shared/ui/Paragraph';
 
-const SendCode = () => {
+const SendCode = memo(() => {
     const { t } = useTranslation('auth');
     const { onChange, isValid, value } = useValidateNumber();
     const { nextStep } = useContext(AuthStepsContext);
@@ -46,6 +46,6 @@ const SendCode = () => {
             </Paragraph>
         </div>
     );
-};
+});
 
 export default SendCode;

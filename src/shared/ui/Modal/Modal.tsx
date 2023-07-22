@@ -84,7 +84,9 @@ export const Modal = ({
             <div className={styles.overlay} onClick={closeHandler}>
                 <div className={styles.content} onClick={onContentClick}>
                     {children}
-                    {closeIcon && <CloseIcon className={styles['close-icon']} onClick={onClose} />}
+                    {closeIcon && (
+                        <CloseIcon className={styles['close-icon']} onClick={closeHandler} />
+                    )}
                 </div>
             </div>
         </div>

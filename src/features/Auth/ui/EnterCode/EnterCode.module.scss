@@ -31,12 +31,14 @@
 	.code {
 		display: flex;
 		justify-content: space-between;
-		width: 240px;
+		width: 100%;
+		max-width: 240px;
 		margin-bottom: 16px;
+		column-gap: 10px;
 
 		input {
-			width: 48px;
-			height: 48px;
+			max-width: 48px;
+			max-height: 48px;
 			padding: 10px 16px;
 			color: var(--color);
 			font-size: 16px;
@@ -52,9 +54,17 @@
 			}
 
 			&:focus {
-				box-shadow: 0 0 0 2px var(--primary);
+				border: 1px solid var(--primary);
 			}
 		}
+	}
+
+	.code-correct {
+		border: 1px solid var(--primary) !important;
+	}
+
+	.not-valid {
+		border: 1px solid red !important;
 	}
 
 	button {
