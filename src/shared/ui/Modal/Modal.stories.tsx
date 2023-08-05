@@ -16,7 +16,6 @@ export const Light: Story = {
     args: {
         children:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A autem ducimusmaiores maxime officiis quia quos voluptatem. Alias, iste, nam?',
-        isOpen: true,
     },
 };
 Light.decorators = [ThemeDecorator(Theme.LIGHT)];
@@ -25,7 +24,6 @@ export const Dark: Story = {
     args: {
         children:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A autem ducimusmaiores maxime officiis quia quos voluptatem. Alias, iste, nam?',
-        isOpen: true,
     },
 };
 Dark.decorators = [ThemeDecorator(Theme.DARK)];
