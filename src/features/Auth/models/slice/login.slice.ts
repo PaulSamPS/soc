@@ -1,23 +1,36 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoginSchema } from '../types/loginSchema';
+import { loginByEmail } from '@/features/Auth/models/services/loginByEmail/loginByEmail';
+import { LoginSchema } from '@/features/Auth';
 
 const initialState: LoginSchema = {
-    code: '',
     isLoading: false,
-    phone: '',
-    error: '',
+    error: undefined,
+    message: undefined,
+    loginMessage: undefined,
 };
 
 export const loginSlice = createSlice({
-    name: 'login',
+    name: 'loginByEmail',
     initialState,
     reducers: {
-        setUserPhone: (state, action: PayloadAction<string>) => {
-            state.phone = action.payload;
+        setLoginComplete: (state, action: PayloadAction<string>) => {
+            state.loginMessage = action.payload;
         },
-        setUserCode: (state, action: PayloadAction<string>) => {
-            state.phone = action.payload;
-        },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(loginByEmail.pending, (state) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(loginByEmail.fulfilled, (state) => {
+                state.isLoading = false;
+                state.error = undefined;
+            })
+            .addCase(loginByEmail.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            });
     },
 });
 

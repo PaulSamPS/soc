@@ -26,6 +26,7 @@ export const Button: FC<ButtonProps & PropsWithChildren> = ({
     appearance,
     square,
     size = ButtonSize.M,
+    type,
     ...otherProps
 }) => {
     const classes: Record<string, boolean> = {

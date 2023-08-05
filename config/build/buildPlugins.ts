@@ -19,13 +19,15 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         }),
     ];
 
+    plugins.push(
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+            analyzerPort: 3003,
+        })
+    );
+
     if (isDev) {
         plugins.push(new webpack.HotModuleReplacementPlugin());
-        plugins.push(
-            new BundleAnalyzerPlugin({
-                openAnalyzer: false,
-            })
-        );
     }
 
     return plugins;

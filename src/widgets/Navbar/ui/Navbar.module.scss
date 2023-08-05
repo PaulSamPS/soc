@@ -6,13 +6,4 @@
 	padding: 20px;
 	background: var(--bg-color-secondary);
 	border-bottom: 1px solid var(--border-color);
-
-	.link {
-		margin-left: auto;
-		transition: color ease-in-out .2s;
-
-		&:hover {
-			color: var(--primary);
-		}
-	}
 }

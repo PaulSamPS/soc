@@ -1,0 +1,28 @@
+.navbar-auth {
+  margin-left: auto;
+  color: var(--color);
+
+  .link {
+    margin-left: auto;
+    transition: color ease-in-out .2s;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color ease-in-out .2s;
+
+    button {
+      padding: 10px;
+    }
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}

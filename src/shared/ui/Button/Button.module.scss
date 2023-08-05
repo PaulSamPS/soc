@@ -4,12 +4,12 @@
 
 	&:disabled {
 		cursor: auto;
-		opacity: 0.6;
+		opacity: 0.4;
 	}
 }
 
 .clear {
-	color: var(--color);
+	color: currentcolor;
 	background: none;
 	border: none;
 	outline: none;
@@ -22,7 +22,7 @@
 	border-radius: 10px;
 	transition: filter ease-in-out .2s;
 
-	&:hover {
+	&:not([disabled]):hover {
 		filter: brightness(1.1);
 	}
 }

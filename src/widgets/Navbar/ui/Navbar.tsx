@@ -1,16 +1,22 @@
 import clsx from 'clsx';
-import { createPortal } from 'react-dom';
 import React, { AllHTMLAttributes, useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Button, ButtonAppearance } from '@/shared/ui/Button';
+import { useSelector } from 'react-redux';
 import styles from './Navbar.module.scss';
 import { AuthModal } from '@/features/Auth';
+import { Portal } from '@/shared/ui/Portal';
+import { getUserState } from '@/entities/User/model/selectors/getLoginState';
+import { NavbarAuth } from '@/widgets/Navbar/ui/NavbarAuth/NavbarAuth';
 
 interface NavbarProps extends AllHTMLAttributes<HTMLDivElement> {}
 
 export const Navbar = ({ className }: NavbarProps) => {
-    const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = useState(false);
+    const [isRegister, setIsRegister] = useState<boolean>(true);
+    const { user } = useSelector(getUserState);
+
+    const onToggleRegister = useCallback(() => {
+        setIsRegister((prev) => !prev);
+    }, []);
 
     const onToggleModal = useCallback(() => {
         setIsAuthModal((prev) => !prev);
@@ -18,17 +24,15 @@ export const Navbar = ({ className }: NavbarProps) => {
 
     return (
         <div className={clsx(styles.navbar, className)}>
-            <Button
-                appearance={ButtonAppearance.CLEAR}
-                className={styles.link}
-                onClick={onToggleModal}
-            >
-                {t('Войти')}
-            </Button>
-            {createPortal(
-                <AuthModal onClose={onToggleModal} isOpen={isAuthModal} />,
-                document.body
-            )}
+            <NavbarAuth isLogin={user !== undefined} onToggleModal={onToggleModal} />
+            <Portal>
+                <AuthModal
+                    isRegister={isRegister}
+                    onClose={onToggleModal}
+                    isOpen={isAuthModal}
+                    onRegister={onToggleRegister}
+                />
+            </Portal>
         </div>
     );
 };

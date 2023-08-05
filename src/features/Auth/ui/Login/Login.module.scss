@@ -1,0 +1,38 @@
+.login {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  row-gap: 20px;
+}
+
+.message-info {
+  height: fit-content;
+  color: var(--red) !important;
+}
+
+.terms {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all ease-in 0.2s;
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 1;
+  }
+}
+
+.switcher {
+  text-align: center;
+}
+
+.question {
+  opacity: 0.4;
+}
+
+.register {
+  margin-left: 10px;
+}
+

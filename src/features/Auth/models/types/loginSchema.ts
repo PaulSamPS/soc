@@ -1,6 +1,6 @@
 export interface LoginSchema {
-    phone: string;
-    code: string;
     isLoading: boolean;
     error?: string;
+    message: string;
+    loginMessage: string;
 }

@@ -1,2 +1,3 @@
 export { AuthModal } from './ui/AuthModal/AuthModal';
-export { loginReducer, loginActions } from './models/slice/login.slice';
+export { RegistrationSchema } from './models/types/registrationSchema';
+export { LoginSchema } from './models/types/loginSchema';
