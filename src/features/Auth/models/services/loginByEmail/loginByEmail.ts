@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { User, userActions } from '@/entities/User';
 import { loginActions } from '../../slice/login.slice';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 interface LoginByEmailProps {
     email: string;
@@ -14,28 +15,30 @@ interface LoginByEmailResult {
     message: string;
 }
 
-export const loginByEmail = createAsyncThunk<LoginByEmailResult, LoginByEmailProps, { rejectValue: string }>(
-    'login/loginByEmail',
-    async ({ email, password }, thunkAPI) => {
-        try {
-            const response = await axios.post<LoginByEmailResult>(
-                'http://localhost:5000/auth/sign-in',
-                { email, password },
-                { withCredentials: true }
-            );
+export const loginByEmail =
+    createAsyncThunk<LoginByEmailResult, LoginByEmailProps, ThunkConfig<string>>(
+        'login/loginByEmail',
+        async ({ email, password }, thunkAPI) => {
+            const { extra, dispatch, rejectWithValue } = thunkAPI;
+            try {
+                const response = await extra.api.post<LoginByEmailResult>(
+                    '/auth/sign-in',
+                    { email, password },
+                );
 
-            if (!response.data) {
-                throw new Error();
+                if (!response.data) {
+                    throw new Error();
+                }
+
+                dispatch(userActions.setUser(response.data.user));
+                dispatch(loginActions.setLoginComplete(response.data.message));
+                localStorage.setItem('authToken', response.data.token);
+                extra.navigate('/');
+
+                return response.data;
+            } catch (e) {
+                const err: AxiosError<{ message: string }> = e;
+                return rejectWithValue(err.response ? err.response.data.message : 'error');
             }
-
-            thunkAPI.dispatch(userActions.setUser(response.data.user));
-            thunkAPI.dispatch(loginActions.setLoginComplete(response.data.message));
-            localStorage.setItem('authToken', response.data.token);
-
-            return response.data;
-        } catch (e) {
-            const err: AxiosError<{ message: string }> = e;
-            return thunkAPI.rejectWithValue(err.response ? err.response.data.message : 'error');
         }
-    }
-);
+    );

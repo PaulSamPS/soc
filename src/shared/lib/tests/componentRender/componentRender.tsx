@@ -16,9 +16,9 @@ export const componentRender = (
     { route = '/', initialState }: ComponentRenderOptions = {}
 ) =>
     render(
-        <StoreProvider initialSate={initialState}>
-            <MemoryRouter initialEntries={[route]}>
+        <MemoryRouter initialEntries={[route]}>
+            <StoreProvider initialSate={initialState}>
                 <I18nextProvider i18n={i18nForTests}>{component}</I18nextProvider>
-            </MemoryRouter>
-        </StoreProvider>
+            </StoreProvider>
+        </MemoryRouter>
     );

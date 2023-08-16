@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { registrationActions } from '../../slice/registration.slice';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 interface RegistrationProps {
     username: string;
@@ -15,24 +16,25 @@ interface RegistrationResult {
 export const registration = createAsyncThunk<
     RegistrationResult,
     RegistrationProps,
-    { rejectValue: string }
+    ThunkConfig<string>
 >('auth/registration', async ({ username, email, password }, thunkAPI) => {
+    const { extra, dispatch, rejectWithValue } = thunkAPI;
     try {
-        const response = await axios.post<RegistrationResult>(
+        const response = await extra.api.post<RegistrationResult>(
             'http://localhost:5000/auth/sign-up',
             { username, email, password },
-            { withCredentials: true }
         );
 
         if (!response.data) {
             throw new Error();
         }
 
-        thunkAPI.dispatch(registrationActions.setRegistrationCompleted(response.data.message));
+        dispatch(registrationActions.setRegistrationCompleted(response.data.message));
+        extra.navigate('/registration-success');
 
         return response.data;
     } catch (e) {
         const err = e as AxiosError<{ message: string }>;
-        return thunkAPI.rejectWithValue(err.response.data.message);
+        return rejectWithValue(err.response.data.message);
     }
 });
