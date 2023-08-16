@@ -7,6 +7,6 @@ interface NotFoundProps {
 }
 
 export const NotFound = ({ className }: NotFoundProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('notFound');
     return <div className={clsx(styles['not-found'], className)}>{t('Страница не найдена')}</div>;
 };

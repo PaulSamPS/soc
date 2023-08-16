@@ -7,7 +7,7 @@ import styles from './PageError.module.scss';
 interface PageErrorProps extends AllHTMLAttributes<HTMLDivElement> {}
 
 export const PageError = ({ className }: PageErrorProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('pageError');
 
     const reloadPage = () => {
         // eslint-disable-next-line no-restricted-globals

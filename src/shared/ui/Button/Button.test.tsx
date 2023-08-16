@@ -10,6 +10,5 @@ describe('Button', () => {
     test('Test primary theme', () => {
         render(<Button appearance={ButtonAppearance.PRIMARY}>TEST</Button>);
         expect(screen.getByText('TEST')).toHaveClass('primary');
-        screen.debug();
     });
 });
