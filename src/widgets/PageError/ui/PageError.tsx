@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { AllHTMLAttributes } from 'react';
+import { AllHTMLAttributes, memo } from 'react';
 import { Button, ButtonAppearance } from '@/shared/ui/Button';
 import styles from './PageError.module.scss';
 
 interface PageErrorProps extends AllHTMLAttributes<HTMLDivElement> {}
 
-export const PageError = ({ className }: PageErrorProps) => {
+export const PageError = memo(({ className }: PageErrorProps) => {
     const { t } = useTranslation('pageError');
 
     const reloadPage = () => {
@@ -22,4 +22,4 @@ export const PageError = ({ className }: PageErrorProps) => {
             </Button>
         </div>
     );
-};
+});

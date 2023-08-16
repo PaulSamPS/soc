@@ -9,12 +9,14 @@ import { CounterSchema } from '@/entities/Counter';
 import { RegistrationSchema } from '@/features/Auth/models/types/registrationSchema';
 import { LoginSchema } from '@/features/Auth';
 import { UserSchema } from '@/entities/User/model/types/userSchema';
+import { ProfileSchema } from '@/entities/Profile';
 
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
     login?: LoginSchema;
     registration?: RegistrationSchema;
+    profile?: ProfileSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;

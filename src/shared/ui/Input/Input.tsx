@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-import { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
+import React, { ForwardedRef, forwardRef, InputHTMLAttributes, memo } from 'react';
 import { FieldError } from 'react-hook-form';
 import styles from './Input.module.scss';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     error?: FieldError;
 }
-export const Input = forwardRef(
+const InputHookForm = forwardRef(
     ({ className, error, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>) => (
         <div className={clsx(className, styles.wrapper)}>
             <input
@@ -20,3 +20,5 @@ export const Input = forwardRef(
         </div>
     )
 );
+
+export const Input = memo(InputHookForm);

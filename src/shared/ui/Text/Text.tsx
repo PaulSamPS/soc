@@ -1,9 +1,10 @@
 import clsx from 'clsx';
+import { memo } from 'react';
 import { TextProps } from './Text.props';
 import styles from './Text.module.scss';
 import { LevelSize, WeightSize } from '@/shared/types/common';
 
-export const Text = ({
+export const Text = memo(({
     children,
     weight = WeightSize.w3,
     fontSize = LevelSize.l3,
@@ -25,4 +26,4 @@ export const Text = ({
             {children}
         </Component>
     );
-};
+});

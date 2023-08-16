@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { memo } from 'react';
 import { BugButton } from '@/app/providers/ErrorBoundary';
 import { Counter } from '@/entities/Counter';
 import styles from './MainPage.module.scss';
 
-const MainPage = () => {
+const MainPage = memo(() => {
     const { t } = useTranslation('main');
 
     return (
@@ -13,6 +14,6 @@ const MainPage = () => {
             <Counter />
         </div>
     );
-};
+});
 
 export default MainPage;

@@ -1,0 +1,20 @@
+.item {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  transition: color ease-in-out .2s;
+}
+
+.link {
+  margin-left: 10px;
+  opacity: 1;
+}
+
+.collapsed {
+
+  .link {
+    width: 0;
+    opacity: 0;
+    transition: opacity ease-in-out .2s;
+  }
+}

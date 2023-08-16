@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
+import { ButtonHTMLAttributes, memo } from 'react';
 import styles from './Button.module.scss';
 
 export enum ButtonAppearance {
@@ -20,7 +20,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: ButtonSize;
 }
 
-export const Button: FC<ButtonProps & PropsWithChildren> = ({
+export const Button = memo(({
     className,
     children,
     appearance,
@@ -28,7 +28,7 @@ export const Button: FC<ButtonProps & PropsWithChildren> = ({
     size = ButtonSize.M,
     type,
     ...otherProps
-}) => {
+}: ButtonProps) => {
     const classes: Record<string, boolean> = {
         [styles[appearance]]: true,
         [styles.square]: square,
@@ -41,4 +41,4 @@ export const Button: FC<ButtonProps & PropsWithChildren> = ({
             {children}
         </button>
     );
-};
+});

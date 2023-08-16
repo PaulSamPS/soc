@@ -1,10 +1,11 @@
 import * as React from 'react';
 import cx from 'clsx';
+import { memo } from 'react';
 import { ParagraphProps } from './Paragraph.props';
 import styles from './Paragraph.module.scss';
 import { WeightSize } from '@/shared/types/common';
 
-export const Paragraph = ({
+export const Paragraph = memo(({
     Component = 'p',
     weight = WeightSize.w3,
     children,
@@ -18,4 +19,4 @@ export const Paragraph = ({
             {children}
         </Component>
     );
-};
+});

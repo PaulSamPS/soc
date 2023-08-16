@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { AllHTMLAttributes, useCallback, useState } from 'react';
+import React, { AllHTMLAttributes, memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './Navbar.module.scss';
 import { AuthModal } from '@/features/Auth';
@@ -9,7 +9,7 @@ import { NavbarAuth } from '@/widgets/Navbar/ui/NavbarAuth/NavbarAuth';
 
 interface NavbarProps extends AllHTMLAttributes<HTMLDivElement> {}
 
-export const Navbar = ({ className }: NavbarProps) => {
+export const Navbar = memo(({ className }: NavbarProps) => {
     const [isAuthModal, setIsAuthModal] = useState(false);
     const [isRegister, setIsRegister] = useState<boolean>(true);
     const { user } = useSelector(getUserState);
@@ -35,4 +35,4 @@ export const Navbar = ({ className }: NavbarProps) => {
             </Portal>
         </div>
     );
-};
+});
