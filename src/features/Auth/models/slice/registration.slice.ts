@@ -6,14 +6,14 @@ const initialState: RegistrationSchema = {
     isLoading: false,
     error: undefined,
     message: undefined,
-    registrationCompleted: undefined,
+    registrationCompleted: false,
 };
 
 export const registrationSlice = createSlice({
     name: 'registration',
     initialState,
     reducers: {
-        setRegistrationCompleted: (state, action: PayloadAction<string>) => {
+        setRegistrationCompleted: (state, action: PayloadAction<boolean>) => {
             state.registrationCompleted = action.payload;
             state.message = undefined;
         },

@@ -3,18 +3,24 @@ import { userActions } from '@/entities/User';
 import { loginActions } from '@/features/Auth/models/slice/login.slice';
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
-const userValue = { id: 1, email: 'test@gmail.com', username: 'user' };
-
 describe('loginByEmail.test', () => {
     it('success login', async () => {
+        const userValue = { id: 1, email: 'test@gmail.com', username: 'user' };
+
         const thunk = new TestAsyncThunk(loginByEmail);
         thunk.api.post.mockResolvedValueOnce(Promise.resolve({ data: userValue }));
         const result = await thunk.callThunk({ email: 'test@gmail.com', password: '12345' });
 
         setTimeout(() => expect(thunk.dispatch)
-            .toHaveBeenCalledWith(userActions.setUser(userValue)), 100);
+            .toHaveBeenCalledWith(
+                userActions.setUser(userValue)
+            ), 100);
+
         setTimeout(() => expect(thunk.dispatch)
-            .toHaveBeenCalledWith(loginActions.setLoginComplete('success')), 100);
+            .toHaveBeenCalledWith(
+                loginActions.setLoginComplete('success')
+            ), 100);
+
         expect(thunk.dispatch).toHaveBeenCalledTimes(4);
         expect(thunk.api.post).toHaveBeenCalled();
         expect(result.meta.requestStatus).toBe('fulfilled');

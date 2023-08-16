@@ -10,7 +10,7 @@ import { Paragraph } from '@/shared/ui/Paragraph';
 import { Button, ButtonAppearance } from '@/shared/ui/Button';
 import { LevelSize, TitleLevel, WeightSize } from '@/shared/types/common';
 import { Input } from '@/shared/ui/Input';
-import { registration } from '../../models/services/registration/registration';
+import { registrationAccount } from '../../models/services/registration/registration';
 import { LoadingModalOverlay } from '@/shared/ui/LoadingModalOverlay';
 import { registrationReducer } from '../../models/slice/registration.slice';
 import {
@@ -51,7 +51,7 @@ const Registration = memo(({ onRegister }: RegistrationProps) => {
     const registrationCompleted = useSelector(getRegistrationCompletedState);
 
     const onSubmit = async (formData: IRegistrationFormProps) => {
-        await dispatch(registration(formData));
+        await dispatch(registrationAccount(formData));
         reset();
     };
 
