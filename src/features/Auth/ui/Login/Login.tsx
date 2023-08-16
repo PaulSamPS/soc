@@ -12,9 +12,11 @@ import { Title } from '@/shared/ui/Title';
 import { LoadingModalOverlay } from '@/shared/ui/LoadingModalOverlay';
 import { loginByEmail } from '@/features/Auth/models/services/loginByEmail/loginByEmail';
 import { loginReducer } from '../../models/slice/login.slice';
-import { getLoginErrorState } from '../../models/selectors/login/getLoginErrorState/getLoginErrorState';
-import { getLoginLoginMessageState } from '@/features/Auth/models/selectors/login/getLoginLoginMessageState/getLoginLoginMessageState';
-import { getLoginIsLoadingState } from '@/features/Auth/models/selectors/login/getLoginIsLoadingState/getLoginIsLoadingState';
+import {
+    getLoginErrorState,
+    getLoginIsLoadingState,
+    getLoginLoginMessageState,
+} from '../../models/selectors/login';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 interface LoginProps {
