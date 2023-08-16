@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RegistrationSchema } from '../types/registrationSchema';
-import { registration } from '@/features/Auth/models/services/registration/registration';
+import { registrationAccount } from '../services/registration/registration';
 
 const initialState: RegistrationSchema = {
     isLoading: false,
@@ -20,15 +20,15 @@ export const registrationSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(registration.pending, (state) => {
+            .addCase(registrationAccount.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(registration.fulfilled, (state, action) => {
+            .addCase(registrationAccount.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = undefined;
             })
-            .addCase(registration.rejected, (state, action) => {
+            .addCase(registrationAccount.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });
