@@ -13,10 +13,10 @@ import { Input } from '@/shared/ui/Input';
 import { registration } from '../../models/services/registration/registration';
 import { LoadingModalOverlay } from '@/shared/ui/LoadingModalOverlay';
 import { registrationReducer } from '../../models/slice/registration.slice';
-import { getRegistrationIsLoadingState } from '../../models/selectors/registration/getRegistrationIsLoadingState';
-import { getRegistrationMessageState } from '../../models/selectors/registration/getRegistrationMessageState';
-import { getRegistrationErrorState } from '../../models/selectors/registration/getRegistrationErrorState';
-import { getRegistrationCompletedState } from '../../models/selectors/registration/getRegistrationCompletedState';
+import { getRegistrationIsLoadingState } from '../../models/selectors/registration/getRegistrationIsLoadingState/getRegistrationIsLoadingState';
+import { getRegistrationMessageState } from '../../models/selectors/registration/getRegistrationMessageState/getRegistrationMessageState';
+import { getRegistrationErrorState } from '../../models/selectors/registration/getRegistrationErrorState/getRegistrationErrorState';
+import { getRegistrationCompletedState } from '../../models/selectors/registration/getRegistrationCompletedState/getRegistrationCompletedState';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 type IRegistrationFormProps = {

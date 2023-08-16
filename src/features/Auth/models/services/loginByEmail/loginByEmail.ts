@@ -34,8 +34,8 @@ export const loginByEmail = createAsyncThunk<LoginByEmailResult, LoginByEmailPro
 
             return response.data;
         } catch (e) {
-            const err = e as AxiosError<{ message: string }>;
-            return thunkAPI.rejectWithValue(err.response.data.message);
+            const err: AxiosError<{ message: string }> = e;
+            return thunkAPI.rejectWithValue(err.response ? err.response.data.message : 'error');
         }
     }
 );
