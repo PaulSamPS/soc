@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +19,7 @@ import {
     getRegistrationMessageState,
     getRegistrationCompletedState } from '../../models/selectors/registration';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 
 type IRegistrationFormProps = {
     username: string;
@@ -43,7 +44,7 @@ const Registration = memo(({ onRegister }: RegistrationProps) => {
     } = useForm<IRegistrationFormProps>({ mode: 'onChange', reValidateMode: 'onBlur' });
     const { t } = useTranslation('auth');
 
-    const dispatch: any = useDispatch();
+    const dispatch = useAppDispatch();
     const isLoading = useSelector(getRegistrationIsLoadingState);
     const message = useSelector(getRegistrationMessageState);
     const error = useSelector(getRegistrationErrorState);

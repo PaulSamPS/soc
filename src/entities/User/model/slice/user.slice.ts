@@ -3,7 +3,7 @@ import { User } from '@/entities/User';
 import { UserSchema } from '@/entities/User/model/types/userSchema';
 
 const initialState: UserSchema = {
-    user: {} as User,
+    user: undefined,
 };
 
 export const userSlice = createSlice({

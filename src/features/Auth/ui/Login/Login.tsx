@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 import { memo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import styles from './Login.module.scss';
 import { Input } from '@/shared/ui/Input';
@@ -18,6 +18,7 @@ import {
     getLoginLoginMessageState,
 } from '../../models/selectors/login';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 
 interface LoginProps {
     className?: string;
@@ -35,7 +36,7 @@ const initialReducers: ReducerList = {
 };
 
 const Login = memo(({ className, onRegister, onClose }: LoginProps) => {
-    const dispatch: any = useDispatch();
+    const dispatch = useAppDispatch();
     const { t } = useTranslation('auth');
 
     const {
