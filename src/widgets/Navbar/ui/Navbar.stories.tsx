@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof Navbar>;
 
 export const Light: Story = { args: {} };
-Light.decorators = [ThemeDecorator(Theme.LIGHT), StoreDecorator({ user: { user: undefined } })];
+Light.decorators = [ThemeDecorator(Theme.LIGHT), StoreDecorator({ user: { authData: undefined } })];
 
 export const Dark: Story = { args: {} };
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({ user: { user: { id: 0 } } })];
+Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({ user: { authData: { id: 0 } } })];

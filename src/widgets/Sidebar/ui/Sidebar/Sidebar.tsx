@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React, { memo, useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { LanguageSwitcher } from '@/widgets/LanguageSwitcher';
 import { ThemeSwitcher } from '@/widgets/ThemeSwwitcher';
 import styles from './Sidebar.module.scss';
@@ -22,29 +23,45 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         <SidebarItem key={item.path} item={item} collapsed={collapsed} />
     )), [collapsed]);
 
+    const variants = {
+        open: { width: '300px' },
+        closed: { width: '80px' },
+    };
+
     return (
-        <div
-            data-testid='sidebar'
-            className={clsx(styles.sidebar, collapsed && styles.collapsed, className)}
-        >
-            <Button
-                appearance={ButtonAppearance.BG}
-                size={ButtonSize.L}
-                square
-                className={styles['collapsed-btn']}
-                data-testid='sidebar-toggle'
-                type='button'
-                onClick={onToggle}
+        <AnimatePresence>
+            <motion.div
+                data-testid='sidebar'
+                className={clsx(styles.sidebar, collapsed && styles.collapsed, className)}
+                animate={!collapsed ? 'open' : 'closed'}
+                variants={variants}
+                initial='closed'
+                exit='closed'
+                transition={{
+                    type: 'spring',
+                    stiffness: 260,
+                    damping: 20,
+                }}
             >
-                {collapsed ? '>' : '<'}
-            </Button>
-            <div className={styles['items-links']}>
-                {itemsList}
-            </div>
-            <div className={styles.switchers}>
-                <ThemeSwitcher />
-                <LanguageSwitcher short={collapsed} className={styles.language} />
-            </div>
-        </div>
+                <Button
+                    appearance={ButtonAppearance.BG}
+                    size={ButtonSize.L}
+                    square
+                    className={styles['collapsed-btn']}
+                    data-testid='sidebar-toggle'
+                    type='button'
+                    onClick={onToggle}
+                >
+                    {collapsed ? '>' : '<'}
+                </Button>
+                <motion.div className={styles['items-links']}>
+                    {itemsList}
+                </motion.div>
+                <div className={styles.switchers}>
+                    <ThemeSwitcher />
+                    <LanguageSwitcher short={collapsed} className={styles.language} />
+                </div>
+            </motion.div>
+        </AnimatePresence>
     );
 });

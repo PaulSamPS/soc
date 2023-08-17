@@ -17,6 +17,7 @@ interface ProfilePageProps {
 
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const { t } = useTranslation('profile');
+
     return (
         <DynamicModuleLoader reducers={reducers}>
             <div className={clsx(styles['profile-page'], className)}>

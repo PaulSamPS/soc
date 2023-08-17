@@ -3,3 +3,11 @@ export interface User {
     email: string;
     username: string;
 }
+
+export interface UserSchema {
+    authData?: User
+}
+
+export interface TokenAuthData {
+    user: User
+}

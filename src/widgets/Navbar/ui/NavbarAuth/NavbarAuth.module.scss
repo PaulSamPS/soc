@@ -17,6 +17,11 @@
     cursor: pointer;
     transition: color ease-in-out .2s;
 
+    svg {
+      height: 24px;
+      width: 24px;
+    }
+
     button {
       padding: 10px;
     }

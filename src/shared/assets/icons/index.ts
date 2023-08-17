@@ -4,5 +4,7 @@ import HomeIcon from './home-icon.svg';
 import ThemeDarkIcon from './theme-dark-icon.svg';
 import ThemeLightIcon from './theme-light-icon.svg';
 import ProfileIcon from './profile-icon.svg';
+import RuIcon from './ru-icon.svg';
+import EnIcon from './en-icon.svg';
 
-export { AboutIcon, CloseIcon, HomeIcon, ThemeDarkIcon, ThemeLightIcon, ProfileIcon };
+export { AboutIcon, CloseIcon, HomeIcon, ThemeDarkIcon, ThemeLightIcon, ProfileIcon, RuIcon, EnIcon };

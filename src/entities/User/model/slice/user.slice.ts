@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '@/entities/User';
-import { UserSchema } from '@/entities/User/model/types/userSchema';
+import jwtDecode from 'jwt-decode';
+import { UserSchema, User, TokenAuthData } from '@/entities/User';
 
 const initialState: UserSchema = {
-    user: undefined,
+    authData: undefined
 };
 
 export const userSlice = createSlice({
@@ -11,7 +11,15 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action: PayloadAction<User>) => {
-            state.user = action.payload;
+            state.authData = action.payload;
+        },
+        initAuthData: (state) => {
+            const user: TokenAuthData =
+                localStorage.getItem('authToken') && jwtDecode(localStorage.getItem('authToken'));
+
+            if (user) {
+                state.authData = user.user;
+            }
         },
     },
 });

@@ -11,8 +11,8 @@ import { NavigateOptions } from 'react-router/dist/lib/context';
 import { CounterSchema } from '@/entities/Counter';
 import { RegistrationSchema } from '@/features/Auth/models/types/registrationSchema';
 import { LoginSchema } from '@/features/Auth';
-import { UserSchema } from '@/entities/User/model/types/userSchema';
 import { ProfileSchema } from '@/entities/Profile';
+import { UserSchema } from '@/entities/User';
 
 export interface StateSchema {
     counter: CounterSchema;

@@ -12,7 +12,7 @@ interface NavbarProps extends AllHTMLAttributes<HTMLDivElement> {}
 export const Navbar = memo(({ className }: NavbarProps) => {
     const [isAuthModal, setIsAuthModal] = useState(false);
     const [isRegister, setIsRegister] = useState<boolean>(true);
-    const { user } = useSelector(getUserState);
+    const user = useSelector(getUserState);
 
     const onToggleRegister = useCallback(() => {
         setIsRegister((prev) => !prev);
@@ -24,7 +24,11 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
     return (
         <div className={clsx(styles.navbar, className)}>
-            <NavbarAuth isLogin={user !== undefined} onToggleModal={onToggleModal} />
+            <NavbarAuth
+                isLogin={!!user}
+                username={user && user.username}
+                onToggleModal={onToggleModal}
+            />
             <Portal>
                 <AuthModal
                     isRegister={isRegister}

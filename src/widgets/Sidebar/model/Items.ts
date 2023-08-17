@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouterPath } from '@/shared/config/routerConfig';
-import { AboutIcon, HomeIcon, ProfileIcon } from '@/shared/assets/icons';
+import { AboutIcon, HomeIcon } from '@/shared/assets/icons';
 
 export interface SidebarItemType {
     path: string
@@ -18,10 +18,5 @@ export const SidebarItemsList: SidebarItemType[] = [
         path: RouterPath.about,
         Icon: AboutIcon,
         text: 'О сайте'
-    },
-    {
-        path: RouterPath.profile,
-        Icon: ProfileIcon,
-        text: 'Профиль'
     }
 ];
