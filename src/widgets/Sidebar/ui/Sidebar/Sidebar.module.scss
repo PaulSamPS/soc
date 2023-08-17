@@ -1,10 +1,8 @@
 .sidebar {
 	position: relative;
-	//width: var(--sidebar-width);
 	height: calc(100vh - var(--navbar-height));
 	background: var(--bg-color-secondary);
 	border-right: 1px solid var(--border-color);
-	//transition: width ease-in-out 0.3s;
 
 	.switchers {
 		position: absolute;
@@ -34,8 +32,6 @@
 }
 
 .collapsed {
-	//width: var(--sidebar-width-collapsed);
-
 	.switchers {
 		flex-direction: column;
 

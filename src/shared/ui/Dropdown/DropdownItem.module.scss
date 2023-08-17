@@ -1,0 +1,25 @@
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  outline: none !important;
+  cursor: pointer;
+  scroll-margin: 8px;
+  transition: background-color ease-in-out .2s;
+
+  &:hover {
+    background-color: var(--primary);
+  }
+}
+
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.menu-item[data-active-item] {
+  color: hsl(204deg 20% 100%);
+  background-color: var(--primary);
+}
+

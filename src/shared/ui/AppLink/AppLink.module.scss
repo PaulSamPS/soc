@@ -13,5 +13,9 @@
 }
 
 .secondary {
-	color: red;
+	color: var(--color);
+
+	&:hover {
+		color: unset;
+	}
 }
