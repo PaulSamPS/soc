@@ -8,6 +8,8 @@ import { Button, ButtonAppearance } from '@/shared/ui/Button';
 import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
 import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
 import { DropdownItemsList } from '@/shared/ui/Dropdown/model/Items';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { userActions } from '@/entities/User';
 
 interface SidebarAuthProps {
     className?: string;
@@ -20,6 +22,7 @@ export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }:
     const { t } = useTranslation('profile');
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const menu = {
         closed: {
@@ -49,10 +52,10 @@ export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }:
 
     const onNavigate = useCallback((to: string, text: string) => {
         if (text === t('Выйти')) {
-            console.log('logout success');
+            dispatch(userActions.logout());
         }
         navigate(to);
-    }, [navigate, t]);
+    }, [dispatch, navigate, t]);
 
     const itemList = useMemo(() => DropdownItemsList.map((i) => (
         <DropdownItem {...item} key={i.path} onClick={() => onNavigate(i.path, t(i.text))}>

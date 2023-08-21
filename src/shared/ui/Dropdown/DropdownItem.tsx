@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, memo } from 'react';
 import * as Ariakit from '@ariakit/react';
 import { motion, HTMLMotionProps } from 'framer-motion';
 import styles from './DropdownItem.module.scss';
 
-export const DropdownItem = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
+const Item = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
     (props, ref) => (
         <Ariakit.MenuItem
             ref={ref}
@@ -12,3 +12,5 @@ export const DropdownItem = forwardRef<HTMLDivElement, HTMLMotionProps<'div'>>(
         />
     ),
 );
+
+export const DropdownItem = memo(Item);
