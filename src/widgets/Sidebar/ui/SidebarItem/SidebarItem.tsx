@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import styles from './SidebarItem.module.scss';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
 import type { SidebarItemType } from '../../model/Items';
+import { animateItems } from '../../model/constants/animate';
 
 interface SidebarItemProps {
     item: SidebarItemType,
@@ -12,10 +13,6 @@ interface SidebarItemProps {
 
 export const SidebarItem = ({ item, collapsed }: SidebarItemProps) => {
     const { t } = useTranslation('sidebarLinks');
-    const variants = {
-        open: { opacity: 1, transform: 'scale(1)' },
-        closed: { opacity: 0, transform: 'scale(0.2)' },
-    };
 
     return (
         <AppLink
@@ -27,7 +24,7 @@ export const SidebarItem = ({ item, collapsed }: SidebarItemProps) => {
             <motion.span
                 className={styles.link}
                 animate={!collapsed ? 'open' : 'closed'}
-                variants={variants}
+                variants={animateItems}
                 initial='closed'
                 exit='closed'
                 transition={{

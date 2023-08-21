@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import styles from './Registration.module.scss';
 import { Title } from '@/shared/ui/Title';
 import { Text } from '@/shared/ui/Text';
@@ -20,6 +21,7 @@ import {
     getRegistrationCompletedState } from '../../models/selectors/registration';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { animate } from '../../models/constants/animate';
 
 type IRegistrationFormProps = {
     username: string;
@@ -57,7 +59,7 @@ const Registration = memo(({ onRegister }: RegistrationProps) => {
 
     return (
         <DynamicModuleLoader reducers={initialReducers}>
-            <form className={styles.registration} onSubmit={handleSubmit(onSubmit)}>
+            <motion.form className={styles.registration} onSubmit={handleSubmit(onSubmit)} {...animate}>
                 {isLoading && <LoadingModalOverlay />}
                 <Title level={TitleLevel.h2}>{t('Регистрация')}</Title>
                 <Text fontSize={LevelSize.l1} className={styles.subtitle}>
@@ -131,7 +133,7 @@ const Registration = memo(({ onRegister }: RegistrationProps) => {
                         {t('Войти')}
                     </Text>
                 </div>
-            </form>
+            </motion.form>
         </DynamicModuleLoader>
     );
 });

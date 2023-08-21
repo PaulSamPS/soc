@@ -7,6 +7,7 @@ import styles from './Sidebar.module.scss';
 import { Button, ButtonAppearance, ButtonSize } from '@/shared/ui/Button';
 import { SidebarItemsList } from '../../model/Items';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
+import { animateSidebar } from '../../model/constants/animate';
 
 interface SidebarProps {
     className?: string;
@@ -23,18 +24,13 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         <SidebarItem key={item.path} item={item} collapsed={collapsed} />
     )), [collapsed]);
 
-    const variants = {
-        open: { width: '300px' },
-        closed: { width: '80px' },
-    };
-
     return (
         <AnimatePresence>
             <motion.div
                 data-testid='sidebar'
                 className={clsx(styles.sidebar, collapsed && styles.collapsed, className)}
                 animate={!collapsed ? 'open' : 'closed'}
-                variants={variants}
+                variants={animateSidebar}
                 initial='closed'
                 exit='closed'
                 transition={{

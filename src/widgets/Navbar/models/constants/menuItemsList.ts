@@ -1,14 +1,8 @@
-import { FC, SVGProps } from 'react';
 import { RouterPath } from '@/shared/config/routerConfig';
 import { LogoutIcon, ProfileIcon } from '@/shared/assets/icons';
+import type { DropDownItemType } from '@/shared/ui/Dropdown';
 
-export interface DropDownItemType {
-    path: string
-    text: string
-    Icon: FC<SVGProps<SVGSVGElement>>
-}
-
-export const DropdownItemsList: DropDownItemType[] = [
+export const MenuItemsList: Array<Pick<DropDownItemType, 'path' | 'Icon' | 'text'>> = [
     {
         path: RouterPath.profile,
         Icon: ProfileIcon,

@@ -2,14 +2,14 @@ import clsx from 'clsx';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import type { MotionProps, Variants } from 'framer-motion';
+import { animate } from '@/widgets/Navbar/models/constants/animate';
 import styles from './NavbarAuth.module.scss';
 import { Button, ButtonAppearance } from '@/shared/ui/Button';
-import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
-import { DropdownItem } from '@/shared/ui/Dropdown/DropdownItem';
-import { DropdownItemsList } from '@/shared/ui/Dropdown/model/Items';
+import { Dropdown } from '@/shared/ui/Dropdown/ui/Dropdown/Dropdown';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { userActions } from '@/entities/User';
+import { DropdownItemList } from '@/shared/ui/Dropdown/ui/DropdownItemList/DropdownItemList';
+import { MenuItemsList } from '@/widgets/Navbar/models/constants/menuItemsList';
 
 interface SidebarAuthProps {
     className?: string;
@@ -19,50 +19,21 @@ interface SidebarAuthProps {
 }
 
 export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }: SidebarAuthProps) => {
-    const { t } = useTranslation('profile');
+    const { t } = useTranslation('menu');
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const menu = {
-        closed: {
-            scale: 0,
-            transition: {
-                delay: 0.15,
-            },
-        },
-        open: {
-            scale: 1,
-            transition: {
-                type: 'spring',
-                duration: 0.4,
-                delayChildren: 0.2,
-                staggerChildren: 0.05,
-            },
-        },
-    } satisfies Variants;
-
-    const item = {
-        variants: {
-            closed: { x: -16, opacity: 0 },
-            open: { x: 0, opacity: 1 },
-        },
-        transition: { opacity: { duration: 0.2 } },
-    } satisfies MotionProps;
-
-    const onNavigate = useCallback((to: string, text: string) => {
+    const onNavigate = useCallback((to: string, text?: string) => {
         if (text === t('Выйти')) {
             dispatch(userActions.logout());
         }
         navigate(to);
     }, [dispatch, navigate, t]);
 
-    const itemList = useMemo(() => DropdownItemsList.map((i) => (
-        <DropdownItem {...item} key={i.path} onClick={() => onNavigate(i.path, t(i.text))}>
-            <i.Icon style={{ width: '24px', height: '24px', marginRight: '8px' }} />
-            {t(i.text)}
-        </DropdownItem>
-    )), [item, onNavigate, t]);
+    const itemList = useMemo(() => MenuItemsList.map((i) => (
+        <DropdownItemList path={i.path} text={i.text} Icon={i.Icon} translation='menu' onNavigate={onNavigate} />
+    )), [onNavigate]);
 
     if (isLogin) {
         return (
@@ -74,7 +45,7 @@ export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }:
                     animate={open ? 'open' : 'closed'}
                     initial='closed'
                     exit='closed'
-                    variants={menu}
+                    variants={animate}
                 >
                     {itemList}
                 </Dropdown>

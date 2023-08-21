@@ -1,10 +1,9 @@
-'use client';
-
 import clsx from 'clsx';
 import React, { AllHTMLAttributes, MouseEvent, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Modal.module.scss';
 import { CloseIcon } from '@/shared/assets/icons';
+import { animateOverlay, animateModal, animateContent } from '../models/animate';
 
 interface ModalProps extends AllHTMLAttributes<HTMLDivElement> {
     isOpen?: boolean;
@@ -35,47 +34,30 @@ export const Modal = ({ className, children, isOpen, onClose, closeIcon = false 
         };
     }, [isOpen, onKeyDown]);
 
-    const variantsModal = {
-        open: { opacity: 1 },
-        closed: { opacity: 0 },
-    };
-
-    const variantsContent = {
-        open: { opacity: 1, transform: 'scale(1)' },
-        closed: { opacity: 0, transform: 'scale(0.2)' },
-    };
-
     return (
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    className={clsx(styles.modal, isOpen && styles.opened, className)}
+                    className={styles.overlay}
+                    onClick={onClose}
                     animate={isOpen ? 'open' : 'closed'}
-                    variants={variantsModal}
+                    variants={animateOverlay}
                     initial='closed'
                     exit='closed'
-                    transition={{
-                        duration: 0.3,
-                    }}
                 >
-                    <div className={styles.overlay} onClick={onClose}>
+                    <motion.div
+                        className={clsx(styles.modal, isOpen && styles.opened, className)}
+                        {...animateModal}
+                    >
                         <motion.div
                             className={styles.content}
                             onClick={onContentClick}
-                            animate={isOpen ? 'open' : 'closed'}
-                            variants={variantsContent}
-                            initial='closed'
-                            exit='closed'
-                            transition={{
-                                type: 'spring',
-                                stiffness: 260,
-                                damping: 20,
-                            }}
+                            {...animateContent}
                         >
                             {children}
                             {closeIcon && <CloseIcon className={styles['close-icon']} onClick={onClose} />}
                         </motion.div>
-                    </div>
+                    </motion.div>
                 </motion.div>
             )}
         </AnimatePresence>

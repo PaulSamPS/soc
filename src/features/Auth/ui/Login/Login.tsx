@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import styles from './Login.module.scss';
 import { Input } from '@/shared/ui/Input';
 import { Button, ButtonAppearance } from '@/shared/ui/Button';
@@ -19,6 +20,7 @@ import {
 } from '../../models/selectors/login';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { animate } from '../../models/constants/animate';
 
 interface LoginProps {
     className?: string;
@@ -48,7 +50,6 @@ const Login = memo(({ className, onRegister, onClose }: LoginProps) => {
     const error = useSelector(getLoginErrorState);
     const loginMessage = useSelector(getLoginLoginMessageState);
     const isLoading = useSelector(getLoginIsLoadingState);
-
     const onSubmit = async (formData: LoginFormProps) => {
         await dispatch(loginByEmail(formData));
         reset();
@@ -62,7 +63,7 @@ const Login = memo(({ className, onRegister, onClose }: LoginProps) => {
 
     return (
         <DynamicModuleLoader reducers={initialReducers}>
-            <form className={clsx(styles.login, className)} onSubmit={handleSubmit(onSubmit)}>
+            <motion.form className={clsx(styles.login, className)} onSubmit={handleSubmit(onSubmit)} {...animate}>
                 {isLoading && <LoadingModalOverlay />}
                 <Title level={TitleLevel.h2}>{t('Вход в аккаунт')}</Title>
                 {error && (
@@ -107,7 +108,7 @@ const Login = memo(({ className, onRegister, onClose }: LoginProps) => {
                         {t('Зарегистрироваться')}
                     </Text>
                 </div>
-            </form>
+            </motion.form>
         </DynamicModuleLoader>
     );
 });
