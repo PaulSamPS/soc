@@ -8,7 +8,7 @@ export const DropdownItemList = ({ text, Icon, path, translation, onNavigate }: 
     const { t } = useTranslation(translation);
 
     return (
-        <DropdownItem {...animate} key={path} onClick={() => onNavigate(path, t(text))}>
+        <DropdownItem {...animate} key={path} onClick={() => (onNavigate ? onNavigate(path, t(text)) : undefined)}>
             <Icon style={{ width: '24px', height: '24px', marginRight: '8px' }} />
             {t(text)}
         </DropdownItem>

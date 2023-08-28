@@ -15,7 +15,7 @@ interface SidebarAuthProps {
     className?: string;
     isLogin: boolean;
     onToggleModal: () => void;
-    username: string
+    username: string | undefined
 }
 
 export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }: SidebarAuthProps) => {
@@ -32,7 +32,14 @@ export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }:
     }, [dispatch, navigate, t]);
 
     const itemList = useMemo(() => MenuItemsList.map((i) => (
-        <DropdownItemList path={i.path} text={i.text} Icon={i.Icon} translation='menu' onNavigate={onNavigate} />
+        <DropdownItemList
+            key={i.path}
+            path={i.path}
+            text={i.text}
+            Icon={i.Icon}
+            translation='menu'
+            onNavigate={onNavigate}
+        />
     )), [onNavigate]);
 
     if (isLogin) {

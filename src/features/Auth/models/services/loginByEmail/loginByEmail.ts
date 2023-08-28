@@ -33,11 +33,11 @@ export const loginByEmail =
                 dispatch(userActions.setUser(response.data.user));
                 dispatch(loginActions.setLoginComplete(response.data.message));
                 localStorage.setItem('authToken', response.data.token);
-                extra.navigate('/');
+                extra.navigate!('/');
 
                 return response.data;
             } catch (e) {
-                const err: AxiosError<{ message: string }> = e;
+                const err: AxiosError<{ message: string }> = e as AxiosError<{ message: string }>;
                 return rejectWithValue(err.response ? err.response.data.message : 'error');
             }
         }

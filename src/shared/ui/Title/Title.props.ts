@@ -7,6 +7,6 @@ interface HasComponent {
 
 export interface TitleProps extends React.AllHTMLAttributes<HTMLElement>, HasComponent {
     weight?: WeightSize;
-    level?: TitleLevel;
+    level: TitleLevel;
     caps?: boolean;
 }

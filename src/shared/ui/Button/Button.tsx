@@ -29,7 +29,7 @@ export const Button = memo(({
     type,
     ...otherProps
 }: ButtonProps) => {
-    const classes: Record<string, boolean> = {
+    const classes: { [p: number]: boolean | undefined } = {
         [styles[appearance]]: true,
         [styles.square]: square,
         [styles[size]]: true,

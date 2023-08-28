@@ -1,11 +1,22 @@
-export interface Profile {
-    email: string
-    username: string
+export interface IProfile {
     id: number
+    avatar: {
+        url: string
+        name: string
+    },
+    firstname: string
+    lastname: string
+    country: string
+    region: string
+    city: string
+    address: string
+    createdAt: Date
+    updatedAt: Date
+    user: number
 }
 
 export interface ProfileSchema {
-    data: Profile
+    data?: IProfile
     isLoading: boolean
     error?: string
     readonly: boolean

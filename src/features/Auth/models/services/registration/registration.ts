@@ -30,11 +30,11 @@ export const registrationAccount = createAsyncThunk<
         }
 
         dispatch(registrationActions.setRegistrationCompleted(true));
-        extra.navigate('/registration-success');
+        extra.navigate!('/registration-success');
 
         return response.data;
     } catch (e) {
-        const err: AxiosError<{ message: string }> = e;
+        const err: AxiosError<{ message: string }> = e as AxiosError<{ message: string }>;
         return rejectWithValue(err.response ? err.response.data.message : 'error');
     }
 });

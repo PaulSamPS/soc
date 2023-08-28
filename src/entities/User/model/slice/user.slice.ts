@@ -15,7 +15,7 @@ export const userSlice = createSlice({
         },
         initAuthData: (state) => {
             const user: TokenAuthData =
-                localStorage.getItem('authToken') && jwtDecode(localStorage.getItem('authToken'));
+                jwtDecode(localStorage.getItem('authToken')!);
 
             if (user) {
                 state.authData = user.user;

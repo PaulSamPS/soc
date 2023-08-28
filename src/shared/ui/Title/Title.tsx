@@ -8,7 +8,7 @@ import { TitleLevel } from '@/shared/types/common';
 export const Title = memo(({
     children,
     weight,
-    level = TitleLevel.h1,
+    level,
     Component,
     caps,
     className,
