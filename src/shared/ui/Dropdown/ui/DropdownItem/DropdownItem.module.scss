@@ -14,7 +14,13 @@
   transition: color ease-in-out .2s;
 }
 
-.menu-item[data-active-item] {
+.menu-item[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.25!important;
+  user-select: none;
+}
+
+.menu-item:not([aria-disabled="true"])[data-active-item] {
   color: var(--white);
   background-color: var(--primary);
 }

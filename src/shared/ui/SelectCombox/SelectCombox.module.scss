@@ -1,0 +1,98 @@
+.button {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  color: var(--color);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  background-color: var(--bg-color-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: filter ease-in-out .2s;
+  user-select: none;
+  touch-action: none;
+  text-decoration-line: none;
+
+  &:focus {
+    border: 2px solid var(--primary);
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.popover {
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  padding-top: 0;
+  overflow: auto;
+  color: var(--color);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: var(--box-shadow-drd);
+  overscroll-behavior: contain;
+
+  &:focus-visible {
+    border: 2px solid var(--primary);
+
+  }
+}
+
+.select-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  outline: none !important;
+  cursor: default;
+  scroll-margin: 0.5rem;
+  scroll-margin-top: 3.5rem;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.select-item[data-active-item] {
+  color: var(--white);
+  background-color: var(--primary);
+}
+
+.combobox-wrapper {
+  position: sticky;
+  top: 0;
+  margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  background-color: inherit;
+}
+
+.combobox {
+  width: 100%;
+  padding: 10px 16px;
+  color: var(--color);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  background-color: var(--bg-color-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  outline: none;
+
+  &:focus-visible {
+    border: 2px solid var(--primary);
+
+  }
+}
+

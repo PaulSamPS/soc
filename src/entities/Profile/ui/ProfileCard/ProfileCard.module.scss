@@ -1,3 +1,56 @@
 .profile-card {
-  text-align: center;
+  padding: 40px;
+  background: var(--bg-color-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+
+  h2 {
+    display: inline-block;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.info-top {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  column-gap: 20px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+
+.data {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  row-gap: 20px;
+}
+
+.bio {
+  display: flex;
+  column-gap: 50px;
+}
+
+.location {
+  display: flex;
+  column-gap: 50px;
+}
+
+.submit {
+  align-self: center;
+  width: 300px;
+  margin-top: 30px;
 }
