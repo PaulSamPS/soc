@@ -1,7 +1,5 @@
-import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { memo, useEffect } from 'react';
-import styles from './ProfilePage.module.scss';
 import {
     DynamicModuleLoader, ReducerList
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -12,11 +10,7 @@ const reducers: ReducerList = {
     profile: profileReducer
 };
 
-interface ProfilePageProps {
-    className?: string
-}
-
-const ProfilePage = memo(({ className }: ProfilePageProps) => {
+const ProfilePage = memo(() => {
     const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
 
@@ -26,9 +20,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={clsx(styles['profile-page'], className)}>
-                <ProfileCard />
-            </div>
+            <ProfileCard />
         </DynamicModuleLoader>
     );
 });
