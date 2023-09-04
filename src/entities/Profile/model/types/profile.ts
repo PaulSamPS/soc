@@ -21,3 +21,13 @@ export interface ProfileSchema {
     error?: string
     readonly: boolean
 }
+
+export interface IProfileEditProps {
+    firstname: string
+    lastname: string
+    avatar: File
+    country: string
+    region: string
+    city: string
+    address: string
+}

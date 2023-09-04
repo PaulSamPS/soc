@@ -11,14 +11,16 @@
     border: 2px solid var(--border-color);
     border-radius: 6px;
     outline: none;
+    cursor: default;
 
     &::placeholder {
       color: var(--color-secondary);
       font-size: 16px;
     }
 
-    &:focus {
+    &:focus:not([readonly]) {
       border: 2px solid var(--primary);
+      cursor: auto;
     }
   }
 }

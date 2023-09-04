@@ -16,7 +16,9 @@
   user-select: none;
   touch-action: none;
   text-decoration-line: none;
+}
 
+.editable {
   &:focus {
     border: 2px solid var(--primary);
   }

@@ -3,12 +3,6 @@
   background: var(--bg-color-secondary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
-
-  h2 {
-    display: inline-block;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
-  }
 }
 
 .info-top {
@@ -49,8 +43,14 @@
   column-gap: 50px;
 }
 
-.submit {
+.button-bottom {
   align-self: center;
   width: 300px;
   margin-top: 30px;
+}
+
+.edit-profile {
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
 }

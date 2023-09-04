@@ -2,11 +2,15 @@ import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { memo, useState } from 'react';
-import styles from './ProfileCard.module.scss';
-import { getProfileData } from '@/entities/Profile/model/selectors/getProfileData';
-import { getProfileIsLoading } from '@/entities/Profile/model/selectors/getProfileIsLoading';
-import { getProfileError } from '@/entities/Profile/model/selectors/getProfileError';
+import { memo, useCallback, useState } from 'react';
+import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading';
+import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly';
+import { getProfileData } from '../../model/selectors/getProfileData';
+import { profileActions } from '../../model/slice/profile.slice';
+import { IProfileEditProps } from '../../model/types/profile';
+import { checkFormData } from '../../model/services/checkFormData';
+import { resetFieldValue } from '../../model/services/resetFieldValue';
+import { LoadingModalOverlay } from '@/shared/ui/LoadingModalOverlay';
 import { Title } from '@/shared/ui/Title';
 import { Button, ButtonAppearance } from '@/shared/ui/Button';
 import { LevelSize, TitleLevel } from '@/shared/types/common';
@@ -15,49 +19,51 @@ import { getUserState } from '@/entities/User/model/selectors/getLoginState';
 import { Text } from '@/shared/ui/Text';
 import { Divider } from '@/shared/ui/Divider';
 import { SelectCombox } from '@/shared/ui/SelectCombox';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+
+import styles from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
     className?: string
 }
 
-interface IProfileEditProps {
-    firstname: string
-    lastname: string
-    avatar: File
-    country: string
-    region: string
-    city: string
-    address: string
-}
-
 export const ProfileCard = memo(({ className }: ProfileCardProps) => {
     const { t } = useTranslation('profile');
-    const [isEditable, setIsEditable] = useState<boolean>(false);
-    const [coutry, setCountry] = useState<string | string[]>('');
+    const [country, setCountry] = useState<string | string[]>('');
+    const [resetCountry, setResetCountry] = useState<boolean>(false);
 
     const data = useSelector(getProfileData);
     const isLoading = useSelector(getProfileIsLoading);
-    const error = useSelector(getProfileError);
     const user = useSelector(getUserState);
+    const readOnly = useSelector(getProfileReadOnly);
+    const dispatch = useAppDispatch();
 
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid },
-        reset,
+        resetField
     } = useForm<IProfileEditProps>({ mode: 'onChange', reValidateMode: 'onBlur' });
 
-    const onSubmit = (formData: IProfileEditProps) => {
-        console.log(coutry);
-        if (typeof coutry === 'string') {
-            formData.country = coutry;
-        }
-        console.log(formData);
-    };
+    const onSubmit = useCallback((formData: IProfileEditProps) => {
+        const newFormData = checkFormData({ formData, data, country });
+        dispatch(profileActions.setReadonly(true));
+        console.log(newFormData);
+    }, [country, data, dispatch]);
+
+    const onEdit = useCallback(() => {
+        dispatch(profileActions.setReadonly(false));
+        setResetCountry(false);
+    }, [dispatch]);
+
+    const onCancelEdit = useCallback(() => {
+        dispatch(profileActions.setCancelEdit());
+        resetFieldValue({ resetField, data });
+        setResetCountry(true);
+    }, [data, dispatch, resetField]);
 
     return (
         <div className={clsx(styles['profile-card'], className)}>
-            <Title level={TitleLevel.h2}>{t('Профиль')}</Title>
+            {isLoading && <LoadingModalOverlay />}
             <div className={styles['info-top']}>
                 <img
                     className={styles.avatar}
@@ -70,19 +76,17 @@ export const ProfileCard = memo(({ className }: ProfileCardProps) => {
                 </div>
                 <Button
                     appearance={ButtonAppearance.PRIMARY}
-                    onClick={() => setIsEditable(true)}
                 >
                     {t('Загрузить фото')}
                 </Button>
                 <Button
                     appearance={ButtonAppearance.OUTLINE}
-                    onClick={() => setIsEditable(true)}
                 >
                     {t('Удалить')}
                 </Button>
             </div>
             <Divider className={styles.divider} />
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.data}>
+            <div className={styles.data}>
                 <div className={styles.bio}>
                     <Input
                         {...register('firstname')}
@@ -90,7 +94,7 @@ export const ProfileCard = memo(({ className }: ProfileCardProps) => {
                         type='text'
                         defaultValue={data?.firstname}
                         placeholder={t('Имя')}
-                        error={errors.firstname}
+                        readOnly={readOnly}
                     />
                     <Input
                         {...register('lastname')}
@@ -98,11 +102,13 @@ export const ProfileCard = memo(({ className }: ProfileCardProps) => {
                         type='text'
                         defaultValue={data?.lastname}
                         placeholder={t('Фамилия')}
-                        error={errors.lastname}
+                        readOnly={readOnly}
                     />
                 </div>
                 <div className={styles.location}>
                     <SelectCombox
+                        reset={resetCountry}
+                        readonly={readOnly!}
                         setValue={setCountry}
                         defaultValue={data?.country!}
                         label='Страна'
@@ -114,21 +120,54 @@ export const ProfileCard = memo(({ className }: ProfileCardProps) => {
                         type='text'
                         defaultValue={data?.region}
                         placeholder={t('Регион')}
-                        error={errors.region}
+                        readOnly={readOnly}
                     />
                 </div>
-                <div className={styles.address}>
+                <div className={styles.location}>
+                    <Input
+                        {...register('city')}
+                        nameInput={t('Город')}
+                        type='text'
+                        defaultValue={data?.city}
+                        placeholder={t('Город')}
+                        readOnly={readOnly}
+                    />
                     <Input
                         {...register('address')}
                         nameInput={t('Адрес')}
                         type='text'
                         defaultValue={data?.address}
                         placeholder={t('Адрес')}
-                        error={errors.address}
+                        readOnly={readOnly}
                     />
                 </div>
-                <Button appearance={ButtonAppearance.PRIMARY} className={styles.submit}>{t('Сохранить')}</Button>
-            </form>
+                {readOnly ? (
+                    <Button
+                        appearance={ButtonAppearance.PRIMARY}
+                        className={styles['button-bottom']}
+                        onClick={onEdit}
+                    >
+                        {t('Редактировать')}
+                    </Button>
+                ) : (
+                    <div className={styles['edit-profile']}>
+                        <Button
+                            appearance={ButtonAppearance.PRIMARY}
+                            className={styles['button-bottom']}
+                            onClick={handleSubmit(onSubmit)}
+                        >
+                            {t('Сохранить')}
+                        </Button>
+                        <Button
+                            appearance={ButtonAppearance.OUTLINE}
+                            className={styles['button-bottom']}
+                            onClick={onCancelEdit}
+                        >
+                            {t('Отменить')}
+                        </Button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 });
