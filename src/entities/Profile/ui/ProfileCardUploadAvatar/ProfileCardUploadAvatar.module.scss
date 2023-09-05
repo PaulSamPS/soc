@@ -1,0 +1,81 @@
+.profile-card-upload-avatar {
+  display: flex;
+}
+
+.control {
+  display: flex;
+  height: 46px;
+  column-gap: 20px;
+}
+
+.modal {
+  padding: 0;
+}
+
+.divider {
+  margin: 0;
+}
+
+.empty-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border: 1px solid var(--color);
+  border-radius: 50%;
+}
+
+.preview {
+  width: 100%;
+  padding: 40px;
+
+  .preview-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.file {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.input-btn {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 30px;
+  color: var(--white);
+  text-align: center;
+  background: var(--primary);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: filter ease 0.2s;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+.file-success {
+  background: var(--green);
+}

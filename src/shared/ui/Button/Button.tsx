@@ -6,6 +6,7 @@ export enum ButtonAppearance {
     CLEAR = 'clear',
     PRIMARY = 'primary',
     OUTLINE = 'outline',
+    RED = 'red',
     BG = 'bg',
 }
 

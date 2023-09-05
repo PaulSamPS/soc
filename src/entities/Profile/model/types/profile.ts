@@ -1,18 +1,18 @@
 export interface IProfile {
-    id: number
-    avatar: {
+    id?: number
+    avatar?: {
         url: string
         name: string
     },
-    firstname: string
-    lastname: string
-    country: string
-    region: string
-    city: string
-    address: string
-    createdAt: Date
-    updatedAt: Date
-    user: number
+    firstname?: string
+    lastname?: string
+    country?: string
+    region?: string
+    city?: string
+    address?: string
+    createdAt?: Date
+    updatedAt?: Date
+    user?: number
 }
 
 export interface ProfileSchema {
@@ -22,12 +22,13 @@ export interface ProfileSchema {
     readonly: boolean
 }
 
-export interface IProfileEditProps {
-    firstname: string
-    lastname: string
-    avatar: File
-    country: string
-    region: string
-    city: string
-    address: string
-}
+export interface IProfileEditProps extends Pick<
+    IProfile,
+    'avatar' |
+    'firstname' |
+    'lastname' |
+    'country' |
+    'region' |
+    'city' |
+    'address'
+> {}

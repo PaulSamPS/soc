@@ -46,11 +46,11 @@ export const Modal = ({ className, children, isOpen, onClose, closeIcon = false 
                     exit='closed'
                 >
                     <motion.div
-                        className={clsx(styles.modal, isOpen && styles.opened, className)}
+                        className={clsx(styles.modal, isOpen && styles.opened)}
                         {...animateModal}
                     >
                         <motion.div
-                            className={styles.content}
+                            className={clsx(styles.content, className)}
                             onClick={onContentClick}
                             {...animateContent}
                         >

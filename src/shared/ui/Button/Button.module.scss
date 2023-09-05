@@ -27,6 +27,18 @@
 	}
 }
 
+.red {
+	color: var(--white);
+	background: var(--red);
+	border: 1px solid var(--red);
+	border-radius: 6px;
+	transition: filter ease-in-out .2s;
+
+	&:hover {
+		filter: brightness(1.1);
+	}
+}
+
 .outline {
 	color: currentcolor;
 	background: none;

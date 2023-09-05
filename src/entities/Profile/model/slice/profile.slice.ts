@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IProfile, ProfileSchema } from '../types/profile';
 import { fetchProfileData } from '../services/fetchProfileData';
+import { updateProfileData } from '../services/updateProfileData';
+import { updateProfileAvatar } from '@/entities/Profile/model/services/updateProfileAvatar';
 
 const initialState: ProfileSchema = {
     data: undefined,
@@ -32,6 +34,32 @@ export const profileSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(fetchProfileData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateProfileData.pending, (state) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(updateProfileData.fulfilled, (state, action: PayloadAction<IProfile>) => {
+                state.data = action.payload;
+                state.error = undefined;
+                state.isLoading = false;
+            })
+            .addCase(updateProfileData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateProfileAvatar.pending, (state) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(updateProfileAvatar.fulfilled, (state, action: PayloadAction<IProfile>) => {
+                state.data = action.payload;
+                state.error = undefined;
+                state.isLoading = false;
+            })
+            .addCase(updateProfileAvatar.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

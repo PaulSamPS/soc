@@ -1,0 +1,10 @@
+.profile-card-location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
+}
+
+.column {
+  display: grid;
+  row-gap: 20px;
+}

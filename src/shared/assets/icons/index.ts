@@ -8,6 +8,7 @@ import RuIcon from './ru-icon.svg';
 import EnIcon from './en-icon.svg';
 import LogoutIcon from './logout-icon.svg';
 import SettingsIcon from './settings-icon.svg';
+import CameraIcon from './camera-icon.svg';
 
 export {
     AboutIcon,
@@ -19,5 +20,6 @@ export {
     RuIcon,
     EnIcon,
     LogoutIcon,
-    SettingsIcon
+    SettingsIcon,
+    CameraIcon
 };
