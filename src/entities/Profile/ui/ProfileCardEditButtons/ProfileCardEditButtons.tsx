@@ -11,6 +11,7 @@ interface ProfileCardEditButtonsProps {
     handleSubmit: UseFormHandleSubmit<IProfileEditProps>;
     onCancelEdit: () => void
     readonly : boolean | undefined
+    dataNotHasBeenChanged: boolean
 }
 
 export const ProfileCardEditButtons = memo(({
@@ -18,7 +19,8 @@ export const ProfileCardEditButtons = memo(({
     onSubmit,
     handleSubmit,
     onCancelEdit,
-    readonly
+    readonly,
+    dataNotHasBeenChanged
 }: ProfileCardEditButtonsProps) => {
     const { t } = useTranslation('profile');
 
@@ -38,6 +40,7 @@ export const ProfileCardEditButtons = memo(({
                         appearance={ButtonAppearance.PRIMARY}
                         className={styles.button}
                         onClick={handleSubmit(onSubmit)}
+                        disabled={dataNotHasBeenChanged}
                     >
                         {t('Сохранить')}
                     </Button>

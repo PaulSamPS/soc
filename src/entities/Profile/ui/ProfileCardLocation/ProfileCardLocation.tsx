@@ -1,11 +1,10 @@
-import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { UseFormRegister } from 'react-hook-form/dist/types/form';
 import { memo } from 'react';
 import styles from './ProfileCardLocation.module.scss';
 import { SelectCombox } from '@/shared/ui/SelectCombox';
 import { Input } from '@/shared/ui/Input';
-import { IProfile, IProfileEditProps } from '@/entities/Profile/model/types/profile';
+import { IProfile, IProfileEditProps } from '../../model/types/profile';
 
 interface ProfileCardLocationProps {
     register: UseFormRegister<IProfileEditProps>

@@ -10,6 +10,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { userActions } from '@/entities/User';
 import { DropdownItemList } from '@/shared/ui/Dropdown/ui/DropdownItemList/DropdownItemList';
 import { MenuItemsList } from '@/widgets/Navbar/models/constants/menuItemsList';
+import { ProfileIcon } from '@/shared/assets/icons';
 
 interface SidebarAuthProps {
     className?: string;
@@ -53,6 +54,7 @@ export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }:
                     initial='closed'
                     exit='closed'
                     variants={animate}
+                    Icon={ProfileIcon}
                 >
                     {itemList}
                 </Dropdown>

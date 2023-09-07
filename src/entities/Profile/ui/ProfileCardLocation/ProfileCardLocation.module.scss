@@ -8,3 +8,9 @@
   display: grid;
   row-gap: 20px;
 }
+
+.editing {
+  input {
+    border: 2px solid var(red)!important;
+  }
+}

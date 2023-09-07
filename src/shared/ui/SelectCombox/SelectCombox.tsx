@@ -5,11 +5,9 @@ import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import styles from './SelectCombox.module.scss';
 import list from './list';
-import { Text } from '@/shared/ui/Text';
-import { LevelSize } from '@/shared/types/common';
 
 interface SelectComboxProps {
-    setValue: (value: string | string[]) => void
+    setValue?: (value: string | string[]) => void
     defaultValue: string
     label: string
     translate: string
@@ -35,8 +33,16 @@ export const SelectCombox = ({ setValue, defaultValue, translate, label, readonl
         if (reset) {
             select.setValue(defaultValue);
         }
-        setValue(stateValue);
+        if (setValue) {
+            setValue(stateValue);
+        }
     }, [defaultValue, reset, select, setValue, stateValue]);
+
+    useEffect(() => {
+        if (defaultValue) {
+            select.setValue(defaultValue);
+        }
+    }, [defaultValue, select]);
 
     return (
         <div className={styles.wrapper}>

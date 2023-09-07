@@ -1,0 +1,35 @@
+.select-file {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.file {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.input-btn {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 30px;
+  color: var(--white);
+  text-align: center;
+  background: var(--primary);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: filter ease 0.2s;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+.file-success {
+  background: var(--green);
+}

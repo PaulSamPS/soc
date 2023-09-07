@@ -9,7 +9,7 @@
 }
 
 .clear {
-	color: currentcolor;
+	color: var(--color);
 	background: none;
 	border: none;
 	outline: none;
@@ -40,7 +40,7 @@
 }
 
 .outline {
-	color: currentcolor;
+	color: var(--color);
 	background: none;
 	border: 1px solid var(--primary);
 	border-radius: 6px;

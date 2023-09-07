@@ -1,9 +1,8 @@
 import * as Ariakit from '@ariakit/react';
-import { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react';
+import React, { ComponentPropsWithoutRef, FC, forwardRef, ReactNode, SVGProps } from 'react';
 import type { MotionProps } from 'framer-motion';
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
 import styles from './Dropdown.module.scss';
-import { ProfileIcon } from '@/shared/assets/icons';
 
 export interface MenuProps extends ComponentPropsWithoutRef<'div'> {
     open?: boolean;
@@ -15,6 +14,7 @@ export interface MenuProps extends ComponentPropsWithoutRef<'div'> {
     variants?: MotionProps['variants'];
     initial?: MotionProps['initial'];
     exit?: MotionProps['exit'];
+    Icon?: FC<SVGProps<SVGSVGElement>>
 }
 export const Dropdown = forwardRef<HTMLDivElement, MenuProps>((
     {
@@ -27,6 +27,7 @@ export const Dropdown = forwardRef<HTMLDivElement, MenuProps>((
         variants,
         initial,
         exit,
+        Icon,
         ...props
     },
     ref,
@@ -38,7 +39,7 @@ export const Dropdown = forwardRef<HTMLDivElement, MenuProps>((
     return (
         <MotionConfig reducedMotion='user'>
             <Ariakit.MenuButton store={menu} ref={ref} className={styles.button} {...props}>
-                <ProfileIcon />
+                {Icon && <Icon />}
                 {label}
             </Ariakit.MenuButton>
             <AnimatePresence>

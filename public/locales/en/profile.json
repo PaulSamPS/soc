@@ -4,7 +4,7 @@
   "Имя": "Firstname",
   "Фамилия": "Lastname",
   "Страна": "Country",
-  "Загрузить фото": "Upload photo",
+  "Загрузить фото": "Upload avatar",
   "Удалить": "Delete",
   "Сохранить": "Save",
   "Регион": "State",
@@ -14,5 +14,8 @@
   "Город": "City",
   "Выберите аватар": "Select avatar",
   "Аватар выбран": "Avatar selected",
-  "Загрузить": "Upload"
+  "Загрузить": "Upload",
+  "Да": "Yes",
+  "Нет": "No",
+  "Удалить аватар ?": "Delete avatar ?"
 }

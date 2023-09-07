@@ -5,7 +5,7 @@ import RegistrationSuccessPage from './RegistrationSuccessPage';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 const meta: Meta<typeof RegistrationSuccessPage> = {
-    title: 'pages/R',
+    title: 'pages/RegistrationSuccessPage',
     component: RegistrationSuccessPage,
     argTypes: {},
     decorators: [StoreDecorator({})],

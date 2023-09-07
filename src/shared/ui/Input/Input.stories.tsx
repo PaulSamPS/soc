@@ -20,3 +20,13 @@ export const ThemeDark: Story = {
     args: { placeholder: 'Text' },
 };
 ThemeDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const ThemeLightWithLabel: Story = {
+    args: { placeholder: 'Text', nameInput: 'Name' },
+};
+ThemeLightWithLabel.decorators = [ThemeDecorator(Theme.LIGHT)];
+
+export const ThemeDarkWithLabel: Story = {
+    args: { placeholder: 'Text', nameInput: 'Name' },
+};
+ThemeDarkWithLabel.decorators = [ThemeDecorator(Theme.DARK)];
