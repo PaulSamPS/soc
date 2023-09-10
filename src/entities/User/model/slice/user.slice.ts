@@ -14,11 +14,13 @@ export const userSlice = createSlice({
             state.authData = action.payload;
         },
         initAuthData: (state) => {
-            const user: TokenAuthData =
-                jwtDecode(localStorage.getItem('authToken')!);
+            if (localStorage.getItem('authToken')) {
+                const user: TokenAuthData =
+                    jwtDecode(localStorage.getItem('authToken')!);
 
-            if (user) {
-                state.authData = user.user;
+                if (user) {
+                    state.authData = user.user;
+                }
             }
         },
         logout: (state) => {

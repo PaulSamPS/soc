@@ -2,10 +2,18 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 420px;
   margin: 0 auto;
   text-align: center;
   row-gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  white-space: nowrap;
+  column-gap: 10px;
 }
 
 .message-info {
@@ -15,24 +23,12 @@
 
 .terms {
   cursor: pointer;
-  opacity: 0.4;
+  opacity: 0.5;
   transition: all ease-in 0.2s;
 
   &:hover {
     text-decoration: underline;
     opacity: 1;
   }
-}
-
-.switcher {
-  text-align: center;
-}
-
-.question {
-  opacity: 0.4;
-}
-
-.register {
-  margin-left: 10px;
 }
 

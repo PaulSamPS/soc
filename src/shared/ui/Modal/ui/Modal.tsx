@@ -35,6 +35,7 @@ export const Modal = ({ className, children, isOpen, onClose, closeIcon = false 
     }, [isOpen, onKeyDown]);
 
     return (
+
         <AnimatePresence>
             {isOpen && (
                 <motion.div

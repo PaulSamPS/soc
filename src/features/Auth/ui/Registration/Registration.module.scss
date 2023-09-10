@@ -2,12 +2,19 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 500px;
-  min-height: 300px;
+  width: 420px;
   margin: 0 auto;
   font-family: 'Inter Regular', sans-serif;
   text-align: center;
   row-gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  white-space: nowrap;
+  column-gap: 10px;
 }
 
 .message-info {
@@ -24,19 +31,11 @@
 
 .terms {
   cursor: pointer;
-  opacity: 0.4;
+  opacity: 0.75;
   transition: all ease-in 0.2s;
 
   &:hover {
     text-decoration: underline;
     opacity: 1;
   }
-}
-
-.question {
-  opacity: 0.4;
-}
-
-.login {
-  margin-left: 10px;
 }

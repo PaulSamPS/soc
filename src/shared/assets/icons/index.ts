@@ -9,6 +9,7 @@ import EnIcon from './en-icon.svg';
 import LogoutIcon from './logout-icon.svg';
 import SettingsIcon from './settings-icon.svg';
 import CameraIcon from './camera-icon.svg';
+import LogoIcon from './logo-icon.svg';
 
 export {
     AboutIcon,
@@ -21,5 +22,6 @@ export {
     EnIcon,
     LogoutIcon,
     SettingsIcon,
-    CameraIcon
+    CameraIcon,
+    LogoIcon
 };

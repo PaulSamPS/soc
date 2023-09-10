@@ -2,12 +2,12 @@ import { MotionProps } from 'framer-motion';
 
 export const animate = {
     variants: {
-        closed: { y: -16,
+        closed: {
             opacity: 0,
             transition: {
                 delay: 0.15,
             } },
-        open: { y: 0, opacity: 1 },
+        open: { opacity: 1 },
     },
     transition: { opacity: { duration: 0.2 },
         ype: 'spring',

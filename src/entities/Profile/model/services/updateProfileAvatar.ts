@@ -9,7 +9,7 @@ export const updateProfileAvatar =
         async (formData, thunkAPI) => {
             const { extra, rejectWithValue } = thunkAPI;
             try {
-                const response = await extra.apiAuth.post<IProfile>(
+                const response = await extra.apiAuth.patch<IProfile>(
                     '/profile/update-avatar',
                     formData
                 );

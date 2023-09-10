@@ -1,0 +1,25 @@
+.variants {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.bottom {
+  text-align: center;
+}
+
+.question {
+  opacity: 0.75;
+}
+
+.btn {
+  margin-left: 10px;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: all ease-in 0.2s;
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 1;
+  }
+}

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
@@ -22,6 +22,8 @@ import {
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { animate } from '../../models/constants/animate';
+import { Divider } from '@/shared/ui/Divider';
+import { Variants } from '@/features/Auth/ui/Variants/Variants';
 
 type IRegistrationFormProps = {
     username: string;
@@ -30,7 +32,7 @@ type IRegistrationFormProps = {
 };
 
 interface RegistrationProps {
-    onRegister: () => void;
+    onRegister: (value: boolean) => void;
 }
 
 const initialReducers: ReducerList = {
@@ -52,19 +54,20 @@ const Registration = memo(({ onRegister }: RegistrationProps) => {
     const error = useSelector(getRegistrationErrorState);
     const registrationCompleted = useSelector(getRegistrationCompletedState);
 
-    const onSubmit = async (formData: IRegistrationFormProps) => {
+    const onSubmit = useCallback(async (formData: IRegistrationFormProps) => {
         await dispatch(registrationAccount(formData));
         reset();
-    };
+    }, [dispatch, reset]);
 
     return (
         <DynamicModuleLoader reducers={initialReducers}>
             <motion.form className={styles.registration} onSubmit={handleSubmit(onSubmit)} {...animate}>
                 {isLoading && <LoadingModalOverlay />}
-                <Title level={TitleLevel.h2}>{t('Регистрация')}</Title>
-                <Text fontSize={LevelSize.l1} className={styles.subtitle}>
-                    {t('Сможете быстро оформлять заказы')}
-                </Text>
+                <div className={styles.header}>
+                    <Divider />
+                    <Title level={TitleLevel.h3}>{t('Регистрация')}</Title>
+                    <Divider />
+                </div>
                 {registrationCompleted && (
                     <Text fontSize={LevelSize.l1} className={styles['message-info']}>
                         {registrationCompleted}
@@ -125,14 +128,10 @@ const Registration = memo(({ onRegister }: RegistrationProps) => {
                 <Paragraph weight={WeightSize.w1} className={styles.terms}>
                     {t('Пользовательское соглашение')}
                 </Paragraph>
-                <div className={styles.switcher}>
-                    <Text fontSize={LevelSize.l1} className={styles.question}>
-                        {t('Есть аккаунт ?')}
-                    </Text>
-                    <Text fontSize={LevelSize.l1} onClick={onRegister} className={clsx(styles.terms, styles.login)}>
-                        {t('Войти')}
-                    </Text>
-                </div>
+                <Variants
+                    onRegister={onRegister}
+                    login
+                />
             </motion.form>
         </DynamicModuleLoader>
     );

@@ -24,7 +24,7 @@ export const registrationSlice = createSlice({
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(registrationAccount.fulfilled, (state, action) => {
+            .addCase(registrationAccount.fulfilled, (state) => {
                 state.isLoading = false;
                 state.error = undefined;
             })

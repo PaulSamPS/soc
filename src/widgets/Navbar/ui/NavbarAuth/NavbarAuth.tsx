@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { animate } from '@/widgets/Navbar/models/constants/animate';
 import styles from './NavbarAuth.module.scss';
 import { Button, ButtonAppearance } from '@/shared/ui/Button';
@@ -21,16 +21,20 @@ interface SidebarAuthProps {
 
 export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }: SidebarAuthProps) => {
     const { t } = useTranslation('menu');
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const { pathname } = useLocation();
 
     const onNavigate = useCallback((to: string, text?: string) => {
+        console.log(text);
         if (text === t('Выйти')) {
             dispatch(userActions.logout());
         }
-        navigate(to);
-    }, [dispatch, navigate, t]);
+        if (to !== pathname && pathname === '/') {
+            navigate(to);
+        }
+    }, [dispatch, navigate, pathname, t]);
 
     const itemList = useMemo(() => MenuItemsList.map((i) => (
         <DropdownItemList

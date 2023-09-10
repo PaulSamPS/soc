@@ -21,11 +21,14 @@ import {
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { animate } from '../../models/constants/animate';
+import { Divider } from '@/shared/ui/Divider';
+import { Variants } from '@/features/Auth/ui/Variants/Variants';
 
 interface LoginProps {
     className?: string;
-    onRegister: () => void;
+    onRegister: (value: boolean) => void;
     onClose: () => void;
+    onForgotPassword: () => void
 }
 
 type LoginFormProps = {
@@ -37,7 +40,12 @@ const initialReducers: ReducerList = {
     login: loginReducer,
 };
 
-const Login = memo(({ className, onRegister, onClose }: LoginProps) => {
+const Login = memo(({
+    className,
+    onRegister,
+    onClose,
+    onForgotPassword
+}: LoginProps) => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation('auth');
 
@@ -65,7 +73,11 @@ const Login = memo(({ className, onRegister, onClose }: LoginProps) => {
         <DynamicModuleLoader reducers={initialReducers}>
             <motion.form className={clsx(styles.login, className)} onSubmit={handleSubmit(onSubmit)} {...animate}>
                 {isLoading && <LoadingModalOverlay />}
-                <Title level={TitleLevel.h2}>{t('Вход в аккаунт')}</Title>
+                <div className={styles.header}>
+                    <Divider />
+                    <Title level={TitleLevel.h3}>{t('Вход в аккаунт')}</Title>
+                    <Divider />
+                </div>
                 {error && (
                     <Text fontSize={LevelSize.l2} className={styles['message-info']}>
                         {error}
@@ -100,14 +112,12 @@ const Login = memo(({ className, onRegister, onClose }: LoginProps) => {
                 >
                     {t('Войти')}
                 </Button>
-                <div className={styles.switcher}>
-                    <Text fontSize={LevelSize.l1} className={styles.question}>
-                        {t('Нет аккаунта ?')}
-                    </Text>
-                    <Text fontSize={LevelSize.l1} onClick={onRegister} className={clsx(styles.terms, styles.register)}>
-                        {t('Зарегистрироваться')}
-                    </Text>
-                </div>
+                <Variants
+                    onRegister={onRegister}
+                    onForgotPassword={onForgotPassword}
+                    register
+                    reset
+                />
             </motion.form>
         </DynamicModuleLoader>
     );

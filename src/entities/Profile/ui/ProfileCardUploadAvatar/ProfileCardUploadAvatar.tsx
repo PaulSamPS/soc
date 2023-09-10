@@ -39,6 +39,7 @@ export const ProfileCardUploadAvatar = ({ onSubmit, isLoading }: ProfileCardUplo
     const onUploadAvatar = useCallback((): void => {
         onSubmit(filesAvatar!);
         setOpen(false);
+        setEdit(false);
     }, [filesAvatar, onSubmit]);
 
     return (

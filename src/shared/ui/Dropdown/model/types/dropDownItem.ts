@@ -6,4 +6,5 @@ export interface DropDownItemType {
     Icon: FC<SVGProps<SVGSVGElement>>
     translation: string
     onNavigate?: (path: string, text?: string) => void
+    logout?: () => void
 }

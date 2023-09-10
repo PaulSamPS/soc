@@ -14,7 +14,7 @@ export const DropdownItemList = ({ text, Icon, path, translation, onNavigate }: 
             key={path}
             {...animate}
             aria-disabled={path === pathname && path !== '/'}
-            onClick={() => (onNavigate && path !== pathname ? onNavigate(path, t(text)) : undefined)}
+            onClick={() => (onNavigate ? onNavigate(path, t(text)) : undefined)}
         >
             <Icon style={{ width: '24px', height: '24px', marginRight: '8px' }} />
             {t(text)}

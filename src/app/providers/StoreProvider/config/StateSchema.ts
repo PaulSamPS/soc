@@ -10,7 +10,7 @@ import { To } from '@remix-run/router';
 import { NavigateOptions } from 'react-router/dist/lib/context';
 import { CounterSchema } from '@/entities/Counter';
 import { RegistrationSchema } from '@/features/Auth/models/types/registrationSchema';
-import { LoginSchema } from '@/features/Auth';
+import { ForgotPasswordSchema, LoginSchema } from '@/features/Auth';
 import { ProfileSchema } from '@/entities/Profile';
 import { UserSchema } from '@/entities/User';
 
@@ -20,6 +20,7 @@ export interface StateSchema {
     login?: LoginSchema;
     registration?: RegistrationSchema;
     profile?: ProfileSchema
+    forgotPassword?: ForgotPasswordSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;
