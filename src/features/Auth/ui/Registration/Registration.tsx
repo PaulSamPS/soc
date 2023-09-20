@@ -1,7 +1,6 @@
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import styles from './Registration.module.scss';

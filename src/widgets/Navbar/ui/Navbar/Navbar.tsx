@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import styles from './Navbar.module.scss';
 import { AuthModal } from '@/features/Auth';
 import { Portal } from '@/shared/ui/Portal';
-import { getUserState } from '@/entities/User/model/selectors/getLoginState';
+import { getAuthDataState } from '@/entities/User/model/selectors/getAuthDataState';
 import { NavbarAuth } from '@/widgets/Navbar/ui/NavbarAuth/NavbarAuth';
 import { Logo } from '@/shared/ui/Logo';
 
@@ -15,7 +15,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const [isRegister, setIsRegister] = useState<boolean>(true);
     const [resetPassword, setResetPassword] = useState<boolean>(false);
 
-    const user = useSelector(getUserState);
+    const user = useSelector(getAuthDataState);
 
     const onToggleRegister = useCallback((value: boolean) => {
         setIsRegister(value);

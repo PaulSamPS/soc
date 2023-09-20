@@ -9,7 +9,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { ProfilePageHeader } from '@/pages/ProfilePage/ui/ProfilePageHeader/ProfilePageHeader';
 import { getProfileData } from '@/entities/Profile/model/selectors/getProfileData';
 import { getProfileIsLoading } from '@/entities/Profile/model/selectors/getProfileIsLoading';
-import { getUserState } from '@/entities/User/model/selectors/getLoginState';
+import { getAuthDataState } from '@/entities/User/model/selectors/getAuthDataState';
 import { getProfileReadOnly } from '@/entities/Profile/model/selectors/getProfileReadOnly';
 import { IProfileEditProps } from '@/entities/Profile/model/types/profile';
 import { updateProfileAvatar } from '@/entities/Profile/model/services/updateProfileAvatar';
@@ -28,7 +28,7 @@ const ProfilePage = memo(() => {
 
     const data = useSelector(getProfileData);
     const isLoading = useSelector(getProfileIsLoading);
-    const user = useSelector(getUserState);
+    const user = useSelector(getAuthDataState);
     const readonly = useSelector(getProfileReadOnly);
     const dispatch = useAppDispatch();
 

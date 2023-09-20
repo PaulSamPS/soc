@@ -27,11 +27,10 @@ export const NavbarAuth = memo(({ className, isLogin, onToggleModal, username }:
     const { pathname } = useLocation();
 
     const onNavigate = useCallback((to: string, text?: string) => {
-        console.log(text);
         if (text === t('Выйти')) {
             dispatch(userActions.logout());
         }
-        if (to !== pathname && pathname === '/') {
+        if (to !== pathname || pathname === '/') {
             navigate(to);
         }
     }, [dispatch, navigate, pathname, t]);
